@@ -1,5 +1,5 @@
 import React from "react";
-import { Welcome } from "./sample/Welcome";
+import { Welcome } from "./Welcome";
 
 var showFunction = Boolean(process.env.REACT_APP_FUNC_NAME);
 

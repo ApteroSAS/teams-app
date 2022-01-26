@@ -6,7 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "install:tabs": "cd tabs && npm install",
-        "installAll": "npm run install:tabs"
+        "installAll": "npm run install:tabs",
+        "deploy": "cross-env npx @microsoft/teamsfx-cli account login azure && npx @microsoft/teamsfx-cli account set --subscription ff4fdd30-08ff-40e8-9225-720c1f964f08 && npx @microsoft/teamsfx-cli provision && npx @microsoft/teamsfx-cli deploy"
     },
     "devDependencies": {
         "@microsoft/teamsfx-cli": "0.*"

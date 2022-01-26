@@ -1,5 +1,5 @@
 {
-    "name": "teamsfx-template-tab",
+    "name": "aptero-teams-app",
     "version": "0.1.0",
     "private": true,
     "dependencies": {

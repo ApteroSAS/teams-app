@@ -5,10 +5,10 @@
     "id": "{{localSettings.teamsApp.teamsAppId}}",
     "packageName": "com.microsoft.teams.extension",
     "developer": {
-        "name": "Teams App, Inc.",
-        "websiteUrl": "{{{localSettings.frontend.tabEndpoint}}}",
-        "privacyUrl": "{{{localSettings.frontend.tabEndpoint}}}/index.html#/privacy",
-        "termsOfUseUrl": "{{{localSettings.frontend.tabEndpoint}}}/index.html#/termsofuse"
+        "name": "Aptero",
+        "websiteUrl": "https://www.aptero.co",
+        "privacyUrl": "https://www.aptero.co/legal/privacy.html",
+        "termsOfUseUrl": "https://www.aptero.co/legal/termsofuse.html"
     },
     "icons": {
         "color": "resources/color.png",
@@ -19,8 +19,8 @@
         "full": "Aptero-local-debug"
     },
     "description": {
-        "short": "Short description of Aptero-local-debug",
-        "full": "Full description of Aptero-local-debug"
+        "short": "Micro metaverse for business",
+        "full": "Your events and immersive training in 3D. Create your immersive 3D rooms with your company's DNA. Organize your meetings, events and training in a fun way remotely. Compatible with any device, personalize and broadcast your content."
     },
     "accentColor": "#FFFFFF",
     "bots": [],

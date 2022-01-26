@@ -6,4 +6,5 @@ node_modules
 .archive.log
 .env.teamsfx.local
 subscriptionInfo.json
+.idea
 build
