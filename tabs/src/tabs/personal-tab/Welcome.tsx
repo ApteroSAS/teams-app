@@ -1,6 +1,6 @@
 import { Image } from "@fluentui/react-northstar";
 import "./Welcome.css";
-import { Graph } from "../../components/profile/Graph";
+import { AccountAuth } from "../../components/profile/AccountAuth";
 import { useTeamsFx } from "../../components/profile/lib/useTeamsFx";
 import { TeamsUserCredential } from "@microsoft/teamsfx";
 import { useData } from "../../components/profile/lib/useData";
@@ -33,7 +33,7 @@ export function Welcome(props: { showFunction?: boolean; environment?: string })
             <h2>
               Welcome to the <a href="https://www.aptero.co/">Aptero</a> teams application!
             </h2>
-            <Graph />
+            <AccountAuth />
           </div>
         </div>
       </div>

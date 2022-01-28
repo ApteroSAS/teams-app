@@ -3,7 +3,7 @@ import { Button } from "@fluentui/react-northstar";
 import { useGraph } from "./lib/useGraph";
 import { ProfileCard } from "./ProfileCard";
 
-export function Graph() {
+export function AccountAuth() {
   const { loading, error, data, reload } = useGraph(
     async (graph) => {
       const profile = await graph.api("/me").get();

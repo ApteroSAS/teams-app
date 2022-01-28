@@ -1,7 +1,7 @@
 {
     "solution": {
         "provisionSucceeded": true,
-        "needCreateResourceGroup": true,
+        "needCreateResourceGroup": false,
         "resourceNameSuffix": "ff536c",
         "resourceGroupName": "Aptero-dev-rg",
         "tenantId": "48caed5d-d20d-40ce-b0cd-9261fc5d8f83",
@@ -32,7 +32,7 @@
     },
     "fx-resource-appstudio": {
         "teamsAppId": "cc0d398c-9710-4dda-a595-19fae8bfd8bd",
-        "teamsAppUpdatedAt": 1643044408089
+        "teamsAppUpdatedAt": 1643382461199
     },
     "fx-resource-simple-auth": {
         "endpoint": "https://apterodevf206c7simpleauth.azurewebsites.net",

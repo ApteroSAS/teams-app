@@ -3,10 +3,10 @@ import { Welcome } from "./Welcome";
 
 var showFunction = Boolean(process.env.REACT_APP_FUNC_NAME);
 
-export default function Tab() {
+export default function PersoTab() {
   return (
     <div>
-      <Welcome showFunction={showFunction} />
+        <Welcome showFunction={showFunction} />
     </div>
   );
 }

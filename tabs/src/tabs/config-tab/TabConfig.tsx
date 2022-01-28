@@ -1,5 +1,8 @@
 import React from "react";
 import * as microsoftTeams from "@microsoft/teams-js";
+import { AccountAuth } from "../../components/profile/AccountAuth";
+import {Input} from "@fluentui/react-northstar";//https://fluentsite.z22.web.core.windows.net/0.60.1
+import { VERSION } from "../../Version";
 
 /**
  * The 'Config' component is used to display your group tabs
@@ -8,6 +11,11 @@ import * as microsoftTeams from "@microsoft/teams-js";
  * their choices and communicate that to Teams to enable the save button.
  */
 class TabConfig extends React.Component {
+  state={
+    url:"https://meet.aptero.co/3NKS9NY?vr_entry_type=2d_now&msteams=true&embed_token=ae766e3d6bb6394d2aa38f69d5f1aad9"
+  }
+
+  
   render() {
     // Initialize the Microsoft Teams SDK
     microsoftTeams.initialize();
@@ -18,12 +26,15 @@ class TabConfig extends React.Component {
      * the settings selected by the user.
      */
     microsoftTeams.settings.registerOnSaveHandler((saveEvent) => {
+      const atobStr = btoa(encodeURIComponent(JSON.stringify(this.state)));
       const baseUrl = `https://${window.location.hostname}:${window.location.port}`;
+      const url = new URL(baseUrl + "/index.html#/scene");
+      url.searchParams.append("data",atobStr);
       microsoftTeams.settings.setSettings({
-        suggestedDisplayName: "My Tab",
-        entityId: "Test",
-        contentUrl: baseUrl + "/index.html#/tab",
-        websiteUrl: baseUrl + "/index.html#/tab",
+        suggestedDisplayName: "Virtual Meeting",
+        entityId: "sceneConfig",
+        contentUrl: url.toString(),
+        websiteUrl: this.state.url,
       });
       saveEvent.notifySuccess();
     });
@@ -38,11 +49,20 @@ class TabConfig extends React.Component {
 
     return (
       <div>
-        <h1>Tab Configuration</h1>
-        <div>
-          This is where you will add your tab configuration options the user can choose when the tab
-          is added to your team/group chat.
-        </div>
+        <h1>Configuration</h1>
+          <h2>Identity</h2>
+        <AccountAuth />
+          Room URL
+          <h2>Room</h2>
+        <Input
+            label="Room URL"
+            fluid
+            value={this.state.url}
+            onChange={(value)=>{
+              this.setState({url:value})
+            }}
+        />
+        <span id="version" style={{"margin":0,"top":"auto","left":"auto","right":"4px","bottom":"2px","fontSize":"0.7em","position":"fixed"}}>{VERSION}</span>
       </div>
     );
   }

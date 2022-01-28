@@ -32,15 +32,23 @@
             "scopes": [
                 "team",
                 "groupchat"
+            ],
+            "context": [
+              "channelTab",
+              "privateChatTab",
+              "meetingChatTab",
+              "meetingDetailsTab",
+              "meetingSidePanel",
+              "meetingStage"
             ]
         }
     ],
     "staticTabs": [
         {
             "entityId": "index",
-            "name": "Personal Tab",
-            "contentUrl": "{{{localSettings.frontend.tabEndpoint}}}/index.html#/tab",
-            "websiteUrl": "{{{localSettings.frontend.tabEndpoint}}}/index.html#/tab",
+            "name": "Aptero - Personal Tab",
+            "contentUrl": "{{{localSettings.frontend.tabEndpoint}}}/index.html#/perso",
+            "websiteUrl": "{{{localSettings.frontend.tabEndpoint}}}/index.html#/perso",
             "scopes": [
                 "personal"
             ]
@@ -50,7 +58,7 @@
         "identity",
         "messageTeamMembers"
     ],
-    "validDomains": [],
+    "validDomains": ["*.ngrok.io","*.aptero.co","axolotis.com"],
     "webApplicationInfo": {
         "id": "{{localSettings.auth.clientId}}",
         "resource": "{{{localSettings.auth.applicationIdUris}}}"
