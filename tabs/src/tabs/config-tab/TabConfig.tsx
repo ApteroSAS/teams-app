@@ -50,10 +50,9 @@ class TabConfig extends React.Component {
     return (
       <div>
         <h1>Configuration</h1>
-          <h2>Identity</h2>
+        <h2>Identity</h2>
         <AccountAuth />
-          Room URL
-          <h2>Room</h2>
+        <h2>Room</h2>
         <Input
             label="Room URL"
             fluid

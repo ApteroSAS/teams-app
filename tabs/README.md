@@ -49,7 +49,7 @@ Once the provisioning and deployment steps are finished, you can preview your ap
 To check that your manifest file is valid:
 
 - From Visual Studio Code: open the Teams Toolkit and click `Validate manifest file` or open the command palette and select: `Teams: Validate manifest file`.
-- From TeamsFx CLI: run command `teamsfx validate` in your project directory.
+- From TeamsFx CLI: run command `teamsfx manifest validate` in your project directory.
 
 ## Package
 
@@ -62,3 +62,5 @@ Once deployed, you may want to distribute your application to your organization'
 
 - From Visual Studio Code: open the Teams Toolkit and click `Publish to Teams` or open the command palette and select: `Teams: Publish to Teams`.
 - From TeamsFx CLI: run command `teamsfx publish` in your project directory.
+- disallow then allow the app in teams admin center
+- restart your teams to see the update
