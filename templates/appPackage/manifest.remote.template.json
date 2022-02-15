@@ -43,17 +43,6 @@
             ]
         }
     ],
-    "staticTabs": [
-        {
-            "entityId": "index",
-            "name": "Aptero - Personal Tab",
-            "contentUrl": "{{{state.fx-resource-frontend-hosting.endpoint}}}/index.html#/perso",
-            "websiteUrl": "{{{state.fx-resource-frontend-hosting.endpoint}}}/index.html#/perso",
-            "scopes": [
-                "personal"
-            ]
-        }
-    ],
     "permissions": [
         "identity",
         "messageTeamMembers"
