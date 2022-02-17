@@ -12,7 +12,8 @@ import { VERSION } from "../../Version";
  */
 class TabConfig extends React.Component {
   state={
-    url:"https://meet.aptero.co/3NKS9NY?embed_token=ae766e3d6bb6394d2aa38f69d5f1aad9"
+    //url:"https://meet.aptero.co/3NKS9NY?embed_token=ae766e3d6bb6394d2aa38f69d5f1aad9&adapter=none"
+    url:"https://meet.aptero.co/3S7yY8X/kpmg-eqho?embed_token=ed66cbb7892901957af4a85bd30f2cd1&adapter=none"
   }
 
   

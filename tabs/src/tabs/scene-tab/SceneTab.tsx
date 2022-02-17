@@ -18,7 +18,7 @@ export default function SceneTab() {
     <>
     {frameContext==="loading" && <div>loading...</div>}
     {frameContext==="sidePanel" && <SidePanelConfigTab/>}
-    {frameContext==="content" && 
+    {(frameContext!=="loading" && frameContext!=="sidePanel") && 
         <iframe 
         title="scene"
         id="mainframe" 
