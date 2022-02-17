@@ -1,7 +1,7 @@
 {
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.11/MicrosoftTeams.schema.json",
     "manifestVersion": "1.11",
-    "version": "1.1.5",
+    "version": "1.1.7",
     "id": "{{state.fx-resource-appstudio.teamsAppId}}",
     "packageName": "com.microsoft.teams.extension",
     "developer": {
@@ -40,17 +40,6 @@
               "meetingDetailsTab",
               "meetingSidePanel",
               "meetingStage"
-            ]
-        }
-    ],
-    "staticTabs": [
-        {
-            "entityId": "index",
-            "name": "Aptero - Personal Tab",
-            "contentUrl": "{{{state.fx-resource-frontend-hosting.endpoint}}}/index.html#/perso",
-            "websiteUrl": "{{{state.fx-resource-frontend-hosting.endpoint}}}/index.html#/perso",
-            "scopes": [
-                "personal"
             ]
         }
     ],

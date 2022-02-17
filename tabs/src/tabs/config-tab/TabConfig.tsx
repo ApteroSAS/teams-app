@@ -62,8 +62,8 @@ class TabConfig extends React.Component {
             label="Room URL"
             fluid
             value={this.state.url}
-            onChange={(value)=>{
-              this.setState({url:value})
+            onChange={(value:any)=>{
+              this.setState({url:value.target.value})
             }}
         />
         <span id="version" style={{"margin":0,"top":"auto","left":"auto","right":"4px","bottom":"2px","fontSize":"0.7em","position":"fixed"}}>{VERSION}</span>
