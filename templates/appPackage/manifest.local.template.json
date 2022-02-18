@@ -5,7 +5,7 @@
     "id": "{{localSettings.teamsApp.teamsAppId}}",
     "packageName": "com.microsoft.teams.extension",
     "developer": {
-        "name": "Aptero",
+        "name": "Aptero Local 1.1.8",
         "websiteUrl": "https://www.aptero.co",
         "privacyUrl": "https://www.aptero.co/legal/privacy.html",
         "termsOfUseUrl": "https://www.aptero.co/legal/termsofuse.html"
