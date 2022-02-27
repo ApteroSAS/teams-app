@@ -1,7 +1,7 @@
 {
     "solution": {
         "provisionSucceeded": true,
-        "needCreateResourceGroup": false,
+        "needCreateResourceGroup": true,
         "resourceNameSuffix": "ff536c",
         "resourceGroupName": "Aptero-dev-rg",
         "tenantId": "48caed5d-d20d-40ce-b0cd-9261fc5d8f83",
@@ -11,14 +11,14 @@
         "teamsAppTenantId": "48caed5d-d20d-40ce-b0cd-9261fc5d8f83"
     },
     "fx-resource-frontend-hosting": {
-        "domain": "apterodevf206c7tab.z6.web.core.windows.net",
-        "endpoint": "https://apterodevf206c7tab.z6.web.core.windows.net",
-        "storageResourceId": "/subscriptions/ff4fdd30-08ff-40e8-9225-720c1f964f08/resourceGroups/Aptero-dev-rg/providers/Microsoft.Storage/storageAccounts/apterodevf206c7tab"
+        "domain": "apterodev9983d5tab.z6.web.core.windows.net",
+        "endpoint": "https://apterodev9983d5tab.z6.web.core.windows.net",
+        "storageResourceId": "/subscriptions/ff4fdd30-08ff-40e8-9225-720c1f964f08/resourceGroups/Aptero-dev-rg/providers/Microsoft.Storage/storageAccounts/apterodev9983d5tab"
     },
     "fx-resource-identity": {
-        "identityName": "apterodevf206c7",
-        "identityResourceId": "/subscriptions/ff4fdd30-08ff-40e8-9225-720c1f964f08/resourceGroups/Aptero-dev-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/apterodevf206c7",
-        "identityClientId": "dae4060c-e959-4dd2-8af3-cb1cb6207bfe"
+        "identityName": "apterodev9983d5",
+        "identityResourceId": "/subscriptions/ff4fdd30-08ff-40e8-9225-720c1f964f08/resourceGroups/Aptero-dev-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/apterodev9983d5",
+        "identityClientId": "0a2cda61-c197-408b-bf13-a2e611bdd412"
     },
     "fx-resource-aad-app-for-teams": {
         "clientId": "3fb42966-b97d-48a2-a53e-23a1617d7cc2",
@@ -27,15 +27,16 @@
         "tenantId": "48caed5d-d20d-40ce-b0cd-9261fc5d8f83",
         "oauthHost": "https://login.microsoftonline.com",
         "oauthAuthority": "https://login.microsoftonline.com/48caed5d-d20d-40ce-b0cd-9261fc5d8f83",
-        "applicationIdUris": "api://apterodevf206c7tab.z6.web.core.windows.net/3fb42966-b97d-48a2-a53e-23a1617d7cc2",
+        "applicationIdUris": "api://apterodev9983d5tab.z6.web.core.windows.net/3fb42966-b97d-48a2-a53e-23a1617d7cc2",
         "clientSecret": "{{fx-resource-aad-app-for-teams.clientSecret}}"
     },
     "fx-resource-appstudio": {
-        "teamsAppId": "7d5578d8-65be-4e43-841d-fb1e81076d7e",
-        "teamsAppUpdatedAt": 1645094866732
+        "teamsAppId": "5522fd5f-a466-464c-b34b-c70785d020e8",
+        "teamsAppUpdatedAt": 1645959277834,
+        "tenantId": "48caed5d-d20d-40ce-b0cd-9261fc5d8f83"
     },
     "fx-resource-simple-auth": {
-        "endpoint": "https://apterodevf206c7simpleauth.azurewebsites.net",
-        "webAppResourceId": "/subscriptions/ff4fdd30-08ff-40e8-9225-720c1f964f08/resourceGroups/Aptero-dev-rg/providers/Microsoft.Web/sites/apterodevf206c7simpleAuth"
+        "endpoint": "https://apterodev9983d5simpleauth.azurewebsites.net",
+        "webAppResourceId": "/subscriptions/ff4fdd30-08ff-40e8-9225-720c1f964f08/resourceGroups/Aptero-dev-rg/providers/Microsoft.Web/sites/apterodev9983d5simpleAuth"
     }
 }

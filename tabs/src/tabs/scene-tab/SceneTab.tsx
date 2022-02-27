@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import * as microsoftTeams from "@microsoft/teams-js";
 import SidePanelConfigTab from "./SidePanelConfigTab";
+import { AccountAuth } from "../../components/profile/AccountAuth";
+
+import { PersonCard,Person, Login } from '@microsoft/mgt-react';
 
 export default function SceneTab() {
   const [frameContext, setFrameContext] = useState("loading");
+  const [auth, setAuth] = useState(false);
   microsoftTeams.getContext((context) =>{
     console.log(context);
     // https://docs.microsoft.com/en-us/microsoftteams/platform/tabs/how-to/access-teams-context
@@ -16,6 +20,15 @@ export default function SceneTab() {
 
   return (
     <>
+    <div style={{position:"absolute", top:"20px",left:"20px",backgroundColor:"white"}}>
+      {/*<AccountAuth />*/}
+      <Login loginCompleted={()=>setAuth(true)}/>
+      {auth && <>
+            <Person personQuery="me" />
+            <PersonCard person-query="me"></PersonCard>
+            </>
+      }
+    </div>
     {frameContext==="loading" && <div>loading...</div>}
     {frameContext==="sidePanel" && <SidePanelConfigTab/>}
     {(frameContext!=="loading" && frameContext!=="sidePanel") && 

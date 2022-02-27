@@ -6,6 +6,8 @@ import { useTeamsFx } from "./components/profile/lib/useTeamsFx";
 import "./App.css";
 import TabConfig from "./tabs/config-tab/TabConfig";
 import SceneTab from "./tabs/scene-tab/SceneTab";
+import { TeamsUserCredential } from "@microsoft/teamsfx";
+import { getScopes } from "./components/auth/AuthScope";
 
 /**
  * The main app which handles the initialization and routing
@@ -13,6 +15,14 @@ import SceneTab from "./tabs/scene-tab/SceneTab";
  */
 export default function App() {
   const { theme, loading } = useTeamsFx();
+  /*if(!loading){
+    const credential = new TeamsUserCredential();
+    try{
+      credential.login(getScopes());
+    }catch(err){
+      // silent fail
+    }
+  }*/
   return (
     <Provider theme={theme || teamsTheme} styles={{ backgroundColor: "#eeeeee" }}>
       <Router>

@@ -1,12 +1,13 @@
 import { useData } from "./useData";
 import { TeamsUserCredential, createMicrosoftGraphClient } from "@microsoft/teamsfx";
 import { Client, GraphError } from "@microsoft/microsoft-graph-client";
+import { getScopes } from "../../auth/AuthScope";
 
 export function useGraph<T>(
   asyncFunc: (graph: Client) => Promise<T>,
   options?: { scope: string | string[] }
 ) {
-  const { scope } = { scope: ["User.Read"], ...options };
+  const { scope } = { scope: getScopes(), ...options };
   const initial = useData(async () => {
     try {
       const credential = new TeamsUserCredential();

@@ -1,5 +1,6 @@
 import React from "react";
 import { Avatar, Card, Flex, Skeleton, Text } from "@fluentui/react-northstar";
+import { Login } from '@microsoft/mgt-react';
 
 export const ProfileCard = (loading: boolean, data?: any) => (
   <Card

@@ -1,11 +1,11 @@
 {
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.11/MicrosoftTeams.schema.json",
     "manifestVersion": "1.11",
-    "version": "1.1.8",
+    "version": "1.1.9",
     "id": "{{localSettings.teamsApp.teamsAppId}}",
     "packageName": "com.microsoft.teams.extension",
     "developer": {
-        "name": "Aptero Local 1.1.8",
+        "name": "Aptero Local 1.1.9",
         "websiteUrl": "https://www.aptero.co",
         "privacyUrl": "https://www.aptero.co/legal/privacy.html",
         "termsOfUseUrl": "https://www.aptero.co/legal/termsofuse.html"
@@ -15,12 +15,12 @@
         "outline": "resources/outline.png"
     },
     "name": {
-        "short": "Aptero-local-debug",
-        "full": "Aptero-local-debug"
+        "short": "{{config.manifest.appName.short}}",
+        "full": "{{config.manifest.appName.full}}"
     },
     "description": {
-        "short": "Micro metaverse for business",
-        "full": "Your events and immersive training in 3D. Create your immersive 3D rooms with your company's DNA. Organize your meetings, events and training in a fun way remotely. Compatible with any device, personalize and broadcast your content."
+        "short": "{{config.manifest.description.short}}",
+        "full": "{{config.manifest.description.full}}"
     },
     "accentColor": "#FFFFFF",
     "bots": [],

@@ -2,6 +2,10 @@ import React from "react";
 import { Button } from "@fluentui/react-northstar";
 import { useGraph } from "./lib/useGraph";
 import { ProfileCard } from "./ProfileCard";
+import { Providers } from '@microsoft/mgt-element';
+import { TeamsProvider } from '@microsoft/mgt-teams-provider';
+
+
 
 export function AccountAuth() {
   const { loading, error, data, reload } = useGraph(
@@ -19,6 +23,7 @@ export function AccountAuth() {
     { scope: ["User.Read"] }
   );
 
+        //https://docs.microsoft.com/en-us/graph/toolkit/components/person-card
   return (
     <div>
       {!data && 
