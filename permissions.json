@@ -2,7 +2,10 @@
     {
         "resource": "Microsoft Graph",
         "delegated": [
-            "User.Read"
+            "Contacts.Read",
+            "Presence.Read.All",
+            "User.Read.All",
+            "People.Read.All"
         ],
         "application": []
     }

@@ -47,7 +47,7 @@
         "identity",
         "messageTeamMembers"
     ],
-    "validDomains": ["*.ngrok.io","*.aptero.co","axolotis.com"],
+    "validDomains": ["*.ngrok.io","*.aptero.co","*.axolotis.com"],
     "webApplicationInfo": {
         "id": "{{localSettings.auth.clientId}}",
         "resource": "{{{localSettings.auth.applicationIdUris}}}"

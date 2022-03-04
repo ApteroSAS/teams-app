@@ -47,7 +47,7 @@
         "identity",
         "messageTeamMembers"
     ],
-    "validDomains": ["*.ngrok.io","*.aptero.co","axolotis.com"],
+    "validDomains": ["*.ngrok.io","*.aptero.co","*.axolotis.com"],
     "webApplicationInfo": {
         "id": "{{state.fx-resource-aad-app-for-teams.clientId}}",
         "resource": "{{{state.fx-resource-aad-app-for-teams.applicationIdUris}}}"

@@ -2,8 +2,7 @@ import React from "react";
 import { Button } from "@fluentui/react-northstar";
 import { useGraph } from "./lib/useGraph";
 import { ProfileCard } from "./ProfileCard";
-import { Providers } from '@microsoft/mgt-element';
-import { TeamsProvider } from '@microsoft/mgt-teams-provider';
+import { getScopes } from "../../service/auth/AuthScope";
 
 
 
@@ -20,10 +19,10 @@ export function AccountAuth() {
       }
       return { profile, photoUrl };
     },
-    { scope: ["User.Read"] }
+    { scope: getScopes() }
   );
-
-        //https://docs.microsoft.com/en-us/graph/toolkit/components/person-card
+  console.log("user id :"+data?.profile.id);
+  //https://docs.microsoft.com/en-us/graph/toolkit/components/person-card
   return (
     <div>
       {!data && 

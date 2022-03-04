@@ -7,7 +7,7 @@ import "./App.css";
 import TabConfig from "./tabs/config-tab/TabConfig";
 import SceneTab from "./tabs/scene-tab/SceneTab";
 import { TeamsUserCredential } from "@microsoft/teamsfx";
-import { getScopes } from "./components/auth/AuthScope";
+import { getScopes } from "./service/auth/AuthScope";
 
 /**
  * The main app which handles the initialization and routing
