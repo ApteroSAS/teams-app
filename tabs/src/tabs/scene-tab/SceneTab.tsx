@@ -50,6 +50,9 @@ export default class SceneTab extends React.Component {
           <iframe 
           title="scene"
           id="mainframe" 
+          ref={(ref)=>{
+            meetVsTeamsBridge.setIframe(ref);
+          }}
           src={config.url}
           loading="eager" 
           style={{"width": "100%", "height": "100%","margin":0,"padding": 0,"border":0}}></iframe>}

@@ -15,18 +15,23 @@ MgtPersonCard.config.useContactApis = true;
 export default class ControlableProfilCard extends React.Component {
 
     state = {
-        userId: "abb64646-d3e2-473d-8d13-0b6faff23605",
+        //userId: "abb64646-d3e2-473d-8d13-0b6faff23605",
+        userId: "",
         expanded: false
     }
 
     componentDidMount() {
         meetVsTeamsBridge.eventListener.on("ms-teams-change-selected-user", async data =>{
-            const credential = new TeamsUserCredential();
-            const graph = createMicrosoftGraphClient(credential, getScopes());
-            let profile = await graph.api('users/')
-            .filter("mail eq '" + data.email + "'")
-            .get();
-            this.setState({ userId:profile.id  || "", expanded: false });
+            try{
+                const credential = new TeamsUserCredential();
+                const graph = createMicrosoftGraphClient(credential, getScopes());
+                let profile:any = await (graph.api('users/')
+                .filter("mail eq '" + data.data.email + "'")
+                .get());
+                this.setState({ userId:profile.value[0].id  || "", expanded: false });
+            }catch(err){
+                this.setState({ userId: "", expanded: false });
+            }
         });
     }
 

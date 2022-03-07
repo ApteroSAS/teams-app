@@ -1,14 +1,14 @@
 import { Providers, ProviderState } from '@microsoft/mgt-react';
 import { TeamsFxProvider } from "@microsoft/mgt-teamsfx-provider";
 import { loadConfiguration, TeamsUserCredential } from "@microsoft/teamsfx";
-import { meetVsTeamsBridge } from './MeetVsTeamsBridge';
+import { AUTH_TOKEN, meetVsTeamsBridge, REQUEST_AUTH_TOKEN } from './MeetVsTeamsBridge';
 
 let credential: TeamsUserCredential | null = null;
 
 export function lisenToAuthTokenrequest(){
-    meetVsTeamsBridge.eventListener.on("ms-teams-request-auth-token",async data => {
+    meetVsTeamsBridge.eventListener.on(REQUEST_AUTH_TOKEN,async data => {
         let token = await initAuth(()=>{});
-        meetVsTeamsBridge.sendIframeMessage("ms-teams-auth-token",{token : await token.getToken(getScopes())})
+        meetVsTeamsBridge.sendIframeMessage(AUTH_TOKEN,{token : await token.getToken(getScopes())})
     });
 }
 

@@ -4,7 +4,7 @@
         "subscriptionId": "ff4fdd30-08ff-40e8-9225-720c1f964f08",
         "subscriptionName": "Azure subscription 1",
         "tenantId": "48caed5d-d20d-40ce-b0cd-9261fc5d8f83",
-        "needCreateResourceGroup": true,
+        "needCreateResourceGroup": false,
         "resourceGroupName": "Aptero-prod-4-rg",
         "location": "West Europe",
         "resourceNameSuffix": "99430f",
@@ -13,7 +13,7 @@
     "fx-resource-appstudio": {
         "tenantId": "48caed5d-d20d-40ce-b0cd-9261fc5d8f83",
         "teamsAppId": "83e15843-4af6-4b33-bacc-d11827352c3e",
-        "teamsAppUpdatedAt": 1646404836652
+        "teamsAppUpdatedAt": 1646419607802
     },
     "fx-resource-identity": {
         "identityName": "apteroprode983d5",
