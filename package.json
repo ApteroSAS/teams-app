@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "install:tabs": "cross-env cd tabs && npm install",
-        "installAll": "cross-env npm run install && npm run install:tabs",
+        "installAll": "cross-env npm install && npm run install:tabs",
         "start": "npx @microsoft/teamsfx-cli preview --local",
         "pre-deploy": "cross-env npx @microsoft/teamsfx-cli account login azure && npx @microsoft/teamsfx-cli account set --subscription ff4fdd30-08ff-40e8-9225-720c1f964f08",
         "deploy": "cross-env npx @microsoft/teamsfx-cli provision && npx @microsoft/teamsfx-cli manifest validate && npx @microsoft/teamsfx-cli package  && npx @microsoft/teamsfx-cli deploy",
