@@ -3,6 +3,8 @@ import * as microsoftTeams from "@microsoft/teams-js";
 import { AccountAuth } from "../../components/profile/AccountAuth";
 import {Input} from "@fluentui/react-northstar";//https://fluentsite.z22.web.core.windows.net/0.60.1
 import { VERSION } from "../../Version";
+import { roomService } from "../../service/RoomService";
+import { CHANGE_SETTINGS_URL, DECLARE_FRAME_SIZE, meetVsTeamsBridge } from "../../service/auth/MeetVsTeamsBridge";
 
 /**
  * The 'Config' component is used to display your group tabs
@@ -10,12 +12,49 @@ import { VERSION } from "../../Version";
  * make their choices and once they are done you will need to validate
  * their choices and communicate that to Teams to enable the save button.
  */
+
 class TabConfig extends React.Component {
   state={
     //url:"https://meet.aptero.co/3NKS9NY?embed_token=ae766e3d6bb6394d2aa38f69d5f1aad9&adapter=none"
     //url:"https://meet.aptero.co/3S7yY8X/kpmg-eqho?embed_token=ed66cbb7892901957af4a85bd30f2cd1"
     //url:"https://fa02-2001-861-36c3-d030-3101-4f25-21aa-393e.ngrok.io/hub.html?hub_id=fTj63Hg&msteams=true&embed_token=846d38e7d0bc3c49716f5f5cb2577ff8"
-    url:"https://alphahub.aptero.co/fTj63Hg?msteams=true&embed_token=846d38e7d0bc3c49716f5f5cb2577ff8"
+    url:"https://alphahub.aptero.co/fTj63Hg",
+    size:{width:"100%",height:"2000px"}
+  }
+  removeListeners: () => void = ()=>{};
+
+  componentDidMount(){
+    microsoftTeams.settings.getSettings((instanceSettings) => {
+      if(instanceSettings.websiteUrl){
+        try{
+          new URL(instanceSettings.websiteUrl);//test url valide
+          this.setState({url:instanceSettings.websiteUrl})
+        }catch(ex){
+          console.error(ex)
+        }
+      }
+    });
+    const callbackSize = (msg:any)=>{
+      this.setState({size:msg.data.size});
+    }
+    meetVsTeamsBridge.eventListener.on(DECLARE_FRAME_SIZE,callbackSize);
+    const callbackUrl = (msg:any)=>{
+      try{
+        new URL(msg.data.url);//test url valide
+        this.setState({url:msg.data.url})
+      }catch(ex){
+        console.error(ex)
+      }
+    }
+    meetVsTeamsBridge.eventListener.on(CHANGE_SETTINGS_URL,callbackUrl);
+    this.removeListeners = () => {
+      meetVsTeamsBridge.eventListener.off(DECLARE_FRAME_SIZE,callbackSize);
+      meetVsTeamsBridge.eventListener.off(CHANGE_SETTINGS_URL,callbackUrl);
+    }
+  }
+
+  componentWillUnmount(){
+    this.removeListeners();
   }
 
   
@@ -28,10 +67,13 @@ class TabConfig extends React.Component {
      * This allows for the addition of query string parameters based on
      * the settings selected by the user.
      */
-    microsoftTeams.settings.registerOnSaveHandler((saveEvent) => {
+    microsoftTeams.settings.registerOnSaveHandler(async (saveEvent) => {
       let config = {...this.state};
       const roomurl = new URL(config.url);
       roomurl.searchParams.append("msteams","true");
+      let data = roomService.parseUrl(roomurl.toString());
+      let token = await roomService.getEmbedToken(data.roomSID,data.origin);
+      roomurl.searchParams.append("embed_token",token);
       config.url = roomurl.toString();
       const atobStr = btoa(encodeURIComponent(JSON.stringify(config)));
       const baseUrl = `https://${window.location.hostname}:${window.location.port}`;
@@ -41,7 +83,7 @@ class TabConfig extends React.Component {
         suggestedDisplayName: "Virtual Meeting",
         entityId: "sceneConfig",
         contentUrl: url.toString(),
-        websiteUrl: this.state.url,
+        websiteUrl: config.url,
       });
       saveEvent.notifySuccess();
     });
@@ -53,10 +95,10 @@ class TabConfig extends React.Component {
      * dialog.
      */
     microsoftTeams.settings.setValidityState(true);
-
+    const frameUrl = new URL((new URL(this.state.url).origin)+"/microsoft-settings.html");
+    frameUrl.searchParams.set("msteams","true");
     return (
       <div>
-        <h1>Configuration</h1>
         <h2>Identity</h2>
         <AccountAuth />
         <h2>Room</h2>
@@ -68,7 +110,18 @@ class TabConfig extends React.Component {
               this.setState({url:value.target.value})
             }}
         />
-        <span id="version" style={{"margin":0,"top":"auto","left":"auto","right":"4px","bottom":"2px","fontSize":"0.7em","position":"fixed"}}>{VERSION}</span>
+
+        <iframe 
+          title="scene"
+          id="settings-frame" 
+          ref={(ref)=>{
+            meetVsTeamsBridge.setIframe(ref);
+          }}
+          src={frameUrl.toString()}
+          loading="eager" 
+          style={{"width": this.state.size.width, "height": this.state.size.height,"margin":0,"padding": 0,"border":0}} />
+
+        <span id="version" style={{"margin":0,"top":0,"left":"auto","right":"4px","bottom":"2px","fontSize":"0.7em","position":"fixed"}}>{VERSION}</span>
       </div>
     );
   }

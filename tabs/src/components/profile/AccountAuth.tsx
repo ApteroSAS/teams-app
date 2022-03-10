@@ -1,14 +1,18 @@
 import React from "react";
 import { Button } from "@fluentui/react-northstar";
 import { useGraph } from "./lib/useGraph";
-import { ProfileCard } from "./ProfileCard";
-import { getScopes } from "../../service/auth/AuthScope";
+import { getScopes, initAuth } from "../../service/auth/AuthScope";
+import { Login } from "@microsoft/mgt-react";
 
 
 
 export function AccountAuth() {
+  
   const { loading, error, data, reload } = useGraph(
     async (graph) => {
+      await initAuth(()=>{
+          console.error("consent needed");
+      });
       const profile = await graph.api("/me").get();
       let photoUrl = "";
       try {
@@ -27,17 +31,17 @@ export function AccountAuth() {
     <div>
       {!data && 
       <div>
-        <p>Click below to authorize this app to read your profile photo using Microsoft Graph.</p>
+        <p>Click below to authorize this app.</p>
         <Button primary content="Authorize" disabled={loading} onClick={reload} />
       </div>
       }
-      {loading && ProfileCard(true)}
+      {loading && <Login/>}
       {!loading && error && (
         <div className="error">
           Failed to read your profile. Please try again later. <br /> Details: {error.toString()}
         </div>
       )}
-      {!loading && data && ProfileCard(false, data)}
+      {!loading && data && <Login/>}
     </div>
   );
 }

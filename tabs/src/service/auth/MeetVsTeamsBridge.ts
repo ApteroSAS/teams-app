@@ -3,6 +3,9 @@ import EventEmitter from "eventemitter3";
 export const INIT_OK = "ms-teams-init-ok";
 export const REQUEST_AUTH_TOKEN = "ms-teams-request-auth-token";
 export const AUTH_TOKEN = "ms-teams-auth-token";
+export const CHANGE_USER = "ms-teams-change-selected-user";
+export const CHANGE_SETTINGS_URL = "ms-teams-change-settings-url";
+export const DECLARE_FRAME_SIZE = "ms-teams-declare-frame-size";
 
 export class MeetVsTeamsBridge {
 

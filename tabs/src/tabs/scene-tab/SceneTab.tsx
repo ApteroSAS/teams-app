@@ -4,9 +4,8 @@ import SidePanelConfigTab from "./SidePanelConfigTab";
 
 
 import ControlableProfilCard from "../../components/profile/ControlableProfilCard";
-import { initAuth } from "../../service/auth/AuthScope";
-import { Login } from "@microsoft/mgt-react";
 import { meetVsTeamsBridge } from "../../service/auth/MeetVsTeamsBridge";
+import { AccountAuth } from "../../components/profile/AccountAuth";
 
 
 export default class SceneTab extends React.Component {
@@ -18,10 +17,6 @@ export default class SceneTab extends React.Component {
   scope: string[] = [];
 
   async componentDidMount() {
-    await initAuth(()=>{
-        console.error("consent needed");
-    });
-    
     microsoftTeams.getContext((context) =>{
       console.log(context);
       // https://docs.microsoft.com/en-us/microsoftteams/platform/tabs/how-to/access-teams-context
@@ -40,8 +35,7 @@ export default class SceneTab extends React.Component {
     return (
       <>
       <div style={{position:"absolute", top:"20px",left:"20px",backgroundColor:"white"}}>
-        {/*<AccountAuth />*/}
-        <Login loginCompleted={()=> setTimeout(()=>this.setState({auth:true}),2000)}/>
+        <AccountAuth />
         {this.state.auth && <ControlableProfilCard/>}
       </div>
       {this.state.frameContext==="loading" && <div>loading...</div>}
