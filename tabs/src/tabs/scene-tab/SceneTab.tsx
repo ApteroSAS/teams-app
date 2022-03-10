@@ -11,8 +11,7 @@ import { AccountAuth } from "../../components/profile/AccountAuth";
 export default class SceneTab extends React.Component {
   
   state = {
-    frameContext: "loading",
-    auth: false,
+    frameContext: "loading"
   }
   scope: string[] = [];
 
@@ -34,9 +33,11 @@ export default class SceneTab extends React.Component {
 
     return (
       <>
-      <div style={{position:"absolute", top:"20px",left:"20px",backgroundColor:"white"}}>
+      <div style={{position:"absolute", bottom:"20px",left:"20px",backgroundColor:"white"}}>
         <AccountAuth />
-        {this.state.auth && <ControlableProfilCard/>}
+      </div>
+      <div style={{position:"absolute", top:"20px",left:"20px",backgroundColor:"white"}}>
+        <ControlableProfilCard/>
       </div>
       {this.state.frameContext==="loading" && <div>loading...</div>}
       {this.state.frameContext==="sidePanel" && <SidePanelConfigTab/>}
