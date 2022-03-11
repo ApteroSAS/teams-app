@@ -18,7 +18,8 @@ class TabConfig extends React.Component {
     //url:"https://meet.aptero.co/3NKS9NY?embed_token=ae766e3d6bb6394d2aa38f69d5f1aad9&adapter=none"
     //url:"https://meet.aptero.co/3S7yY8X/kpmg-eqho?embed_token=ed66cbb7892901957af4a85bd30f2cd1"
     //url:"https://fa02-2001-861-36c3-d030-3101-4f25-21aa-393e.ngrok.io/hub.html?hub_id=fTj63Hg&msteams=true&embed_token=846d38e7d0bc3c49716f5f5cb2577ff8"
-    url:"https://alphahub.aptero.co/fTj63Hg",
+    //url:"https://alphahub.aptero.co/fTj63Hg",
+    url:"",
     size:{width:"100%",height:"2000px"}
   }
   removeListeners: () => void = ()=>{};
@@ -95,17 +96,29 @@ class TabConfig extends React.Component {
      * dialog.
      */
     microsoftTeams.settings.setValidityState(true);
-    const frameUrl = new URL((new URL(this.state.url).origin)+"/microsoft-settings.html");
-    frameUrl.searchParams.set("msteams","true");
+    let frameUrl = new URL("https://meet.aptero.co/microsoft-settings.html");
+    try{
+      frameUrl = new URL((new URL(this.state.url).origin)+"/microsoft-settings.html");
+      frameUrl.searchParams.set("msteams","true");
+    }catch(e){
+      //ignore error
+    }
+
+    let roomUrl = this.state.url
+    try{
+      roomUrl = new URL(this.state.url).origin + new URL(this.state.url).pathname;
+    }catch(e){
+      //ignore error
+    }
     return (
       <div>
         <h2>Identity</h2>
         <AccountAuth />
         <h2>Room</h2>
         <Input
-            label="Room URL"
+            label="Selected Room"
             fluid
-            value={this.state.url}
+            value={roomUrl}
             onChange={(value:any)=>{
               this.setState({url:value.target.value})
             }}

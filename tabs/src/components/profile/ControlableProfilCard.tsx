@@ -75,7 +75,7 @@ export default class ControlableProfilCard extends React.Component<any,any> {
                     <Button style={{flexGrow:1}} onClick={()=>{
                         microsoftTeams.executeDeepLink("https://teams.microsoft.com/l/chat/0/0?users="+((this.state.user) as any).mail);
                         }} >Chat</Button>
-                    <Button style={{flexGrow:1}} onClick={()=>{this.setState({ userId: "", expanded: false });}}>Close</Button>
+                    <Button style={{flexGrow:1}} onClick={()=>{this.setState({ user: null, expanded: false });}}>Close</Button>
                 </div>
                 <PersonCard userId={((this.state.user) as any).id} showPresence={true} isExpanded={this.state.expanded} expanded={(e) => { this.setState({ expanded: true }) }}></PersonCard>
                 </>
