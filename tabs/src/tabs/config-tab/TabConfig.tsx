@@ -1,7 +1,7 @@
 import React from "react";
 import * as microsoftTeams from "@microsoft/teams-js";
 import { AccountAuth } from "../../components/profile/AccountAuth";
-import {Input} from "@fluentui/react-northstar";//https://fluentsite.z22.web.core.windows.net/0.60.1
+import { Button, Input } from "@fluentui/react-northstar";//https://fluentsite.z22.web.core.windows.net/0.60.1
 import { VERSION } from "../../Version";
 import { roomService } from "../../service/RoomService";
 import { CHANGE_SETTINGS_URL, DECLARE_FRAME_SIZE, meetVsTeamsBridge } from "../../service/auth/MeetVsTeamsBridge";
@@ -14,51 +14,53 @@ import { CHANGE_SETTINGS_URL, DECLARE_FRAME_SIZE, meetVsTeamsBridge } from "../.
  */
 
 class TabConfig extends React.Component {
-  state={
+  state = {
     //url:"https://meet.aptero.co/3NKS9NY?embed_token=ae766e3d6bb6394d2aa38f69d5f1aad9&adapter=none"
     //url:"https://meet.aptero.co/3S7yY8X/kpmg-eqho?embed_token=ed66cbb7892901957af4a85bd30f2cd1"
     //url:"https://fa02-2001-861-36c3-d030-3101-4f25-21aa-393e.ngrok.io/hub.html?hub_id=fTj63Hg&msteams=true&embed_token=846d38e7d0bc3c49716f5f5cb2577ff8"
     //url:"https://alphahub.aptero.co/fTj63Hg",
-    url:"",
-    size:{width:"100%",height:"2000px"}
+    url: "",
+    size: { width: "100%", height: "2000px" },
+    logged: false,
+    suggestedDisplayName: "Virtual Meeting",
   }
-  removeListeners: () => void = ()=>{};
+  removeListeners: () => void = () => { };
 
-  componentDidMount(){
+  componentDidMount() {
     microsoftTeams.settings.getSettings((instanceSettings) => {
-      if(instanceSettings.websiteUrl){
-        try{
+      if (instanceSettings.websiteUrl) {
+        try {
           new URL(instanceSettings.websiteUrl);//test url valide
-          this.setState({url:instanceSettings.websiteUrl})
-        }catch(ex){
+          this.setState({ url: instanceSettings.websiteUrl })
+        } catch (ex) {
           console.error(ex)
         }
       }
     });
-    const callbackSize = (msg:any)=>{
-      this.setState({size:msg.data.size});
+    const callbackSize = (msg: any) => {
+      this.setState({ size: msg.data.size });
     }
-    meetVsTeamsBridge.eventListener.on(DECLARE_FRAME_SIZE,callbackSize);
-    const callbackUrl = (msg:any)=>{
-      try{
+    meetVsTeamsBridge.eventListener.on(DECLARE_FRAME_SIZE, callbackSize);
+    const callbackUrl = (msg: any) => {
+      try {
         new URL(msg.data.url);//test url valide
-        this.setState({url:msg.data.url})
-      }catch(ex){
+        this.setState({ url: msg.data.url })
+      } catch (ex) {
         console.error(ex)
       }
     }
-    meetVsTeamsBridge.eventListener.on(CHANGE_SETTINGS_URL,callbackUrl);
+    meetVsTeamsBridge.eventListener.on(CHANGE_SETTINGS_URL, callbackUrl);
     this.removeListeners = () => {
-      meetVsTeamsBridge.eventListener.off(DECLARE_FRAME_SIZE,callbackSize);
-      meetVsTeamsBridge.eventListener.off(CHANGE_SETTINGS_URL,callbackUrl);
+      meetVsTeamsBridge.eventListener.off(DECLARE_FRAME_SIZE, callbackSize);
+      meetVsTeamsBridge.eventListener.off(CHANGE_SETTINGS_URL, callbackUrl);
     }
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.removeListeners();
   }
 
-  
+
   render() {
     // Initialize the Microsoft Teams SDK
     microsoftTeams.initialize();
@@ -69,19 +71,19 @@ class TabConfig extends React.Component {
      * the settings selected by the user.
      */
     microsoftTeams.settings.registerOnSaveHandler(async (saveEvent) => {
-      let config = {...this.state};
+      let config = { ...this.state };
       const roomurl = new URL(config.url);
-      roomurl.searchParams.append("msteams","true");
+      roomurl.searchParams.append("msteams", "true");
       let data = roomService.parseUrl(roomurl.toString());
-      let token = await roomService.getEmbedToken(data.roomSID,data.origin);
-      roomurl.searchParams.append("embed_token",token);
+      let token = await roomService.getEmbedToken(data.roomSID, data.origin);
+      roomurl.searchParams.append("embed_token", token);
       config.url = roomurl.toString();
       const atobStr = btoa(encodeURIComponent(JSON.stringify(config)));
       const baseUrl = `https://${window.location.hostname}:${window.location.port}`;
       const url = new URL(baseUrl + "/index.html#/scene");
-      url.searchParams.append("data",atobStr);
+      url.searchParams.append("data", atobStr);
       microsoftTeams.settings.setSettings({
-        suggestedDisplayName: "Virtual Meeting",
+        suggestedDisplayName: this.state.suggestedDisplayName,
         entityId: "sceneConfig",
         contentUrl: url.toString(),
         websiteUrl: config.url,
@@ -95,47 +97,70 @@ class TabConfig extends React.Component {
      * to be valid.  This will enable the save button in the configuration
      * dialog.
      */
-    microsoftTeams.settings.setValidityState(true);
+    if (this.state.url) {
+      //form valisation
+      try {
+        new URL(this.state.url);
+        microsoftTeams.settings.setValidityState(true);
+      } catch (e) {
+        //ignore error
+      }
+    }
     let frameUrl = new URL("https://meet.aptero.co/microsoft-settings.html");
-    try{
-      frameUrl = new URL((new URL(this.state.url).origin)+"/microsoft-settings.html");
-      frameUrl.searchParams.set("msteams","true");
-    }catch(e){
+    try {
+      frameUrl = new URL((new URL(this.state.url).origin) + "/microsoft-settings.html");
+      frameUrl.searchParams.set("msteams", "true");
+    } catch (e) {
       //ignore error
     }
 
     let roomUrl = this.state.url
-    try{
+    try {
       roomUrl = new URL(this.state.url).origin + new URL(this.state.url).pathname;
-    }catch(e){
+    } catch (e) {
       //ignore error
     }
     return (
       <div>
         <h2>Identity</h2>
-        <AccountAuth />
-        <h2>Room</h2>
-        <Input
-            label="Selected Room"
-            fluid
-            value={roomUrl}
-            onChange={(value:any)=>{
-              this.setState({url:value.target.value})
-            }}
-        />
-
-        <iframe 
-          title="scene"
-          id="settings-frame" 
-          ref={(ref)=>{
-            meetVsTeamsBridge.setIframe(ref);
-          }}
-          src={frameUrl.toString()}
-          loading="eager" 
-          style={{"width": this.state.size.width, "height": this.state.size.height,"margin":0,"padding": 0,"border":0}} />
-
-        <span id="version" style={{"margin":0,"top":0,"left":"auto","right":"4px","bottom":"2px","fontSize":"0.7em","position":"fixed"}}>{VERSION}</span>
+        <AccountAuth loginCompleted={() => { this.setState({ logged: true }) }} />
+        {this.state.logged && <>
+          <h2>Room</h2>
+          {this.state.url && <>
+            <Input
+              label="Room Display Name"
+              fluid
+              value={this.state.suggestedDisplayName}
+              onChange={(value: any) => {
+                this.setState({ suggestedDisplayName: value.target.value })
+              }}
+            />
+            <Input
+              label="Selected Room"
+              fluid
+              value={roomUrl}
+              onChange={(value: any) => {
+                this.setState({ url: value.target.value })
+              }}
+            />
+            <Button fluid onClick={() => { this.setState({ url: "" }) }}>Change Scene</Button>
+          </>
+          }
+          {!this.state.url &&
+            <iframe
+              title="scene"
+              id="settings-frame"
+              ref={(ref) => {
+                meetVsTeamsBridge.setIframe(ref);
+              }}
+              src={frameUrl.toString()}
+              loading="eager"
+              style={{ "width": this.state.size.width, "height": this.state.size.height, "margin": 0, "padding": 0, "border": 0 }} />
+          }
+        </>}
+        <span id="version" style={{ "margin": 0, "top": 0, "left": "auto", "right": "4px", "bottom": "2px", "fontSize": "0.7em", "position": "fixed" }}>{VERSION}</span>
       </div>
+
     );
   }
 }

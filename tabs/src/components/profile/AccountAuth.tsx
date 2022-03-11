@@ -6,7 +6,7 @@ import { Login } from "@microsoft/mgt-react";
 
 
 
-export function AccountAuth() {
+export function AccountAuth(props:{loginCompleted?:()=>void}) {
   
   const { loading, error, data, reload } = useGraph(
     async (graph) => {
@@ -35,13 +35,13 @@ export function AccountAuth() {
         <Button primary content="Authorize" disabled={loading} onClick={reload} />
       </div>
       }
-      {loading && <Login/>}
+      {loading && <Login loginCompleted={props.loginCompleted} />}
       {!loading && error && (
         <div className="error">
           Failed to read your profile. Please try again later. <br /> Details: {error.toString()}
         </div>
       )}
-      {!loading && data && <Login/>}
+      {!loading && data && <Login loginCompleted={props.loginCompleted} />}
     </div>
   );
 }
