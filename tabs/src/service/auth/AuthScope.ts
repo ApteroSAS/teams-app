@@ -11,11 +11,11 @@ var startLoginPageUrl = process.env.REACT_APP_START_LOGIN_PAGE_URL;
 var functionEndpoint = process.env.REACT_APP_FUNC_ENDPOINT;
 var clientId = process.env.REACT_APP_CLIENT_ID;
 
-export function getCredential() : TeamsUserCredential{
-    if(!credential){
+export function getCredential(): TeamsUserCredential {
+    if (!credential) {
         initTeamsFx("common");
     }
-    if(!credential){
+    if (!credential) {
         throw new Error("");
     }
     return credential;
@@ -57,7 +57,7 @@ export function lisenToAuthTokenrequest() {
     });
 }
 
-export async function passiveAuth():Promise<TeamsUserCredential> {
+export async function passiveAuth(): Promise<TeamsUserCredential> {
     console.log("initAuth");
     const cred = getCredential();
     await initGraphToolkit(cred, getScopes());
@@ -65,19 +65,48 @@ export async function passiveAuth():Promise<TeamsUserCredential> {
     return cred;
 }
 
-export async function userInteractionAuth(consentNeeded: () => void):Promise<TeamsUserCredential> {
+async function teamsAuth(){
+    return new Promise((resolve, reject) =>{
+        try {
+            
+            const loginUrl = new URL(startLoginPageUrl || "ERROR");
+            //loginUrl.searchParams.set("clientId", clientId);
+            //loginUrl.searchParams.set("scope", getScopes());
+            //loginUrl.searchParams.set("loginHint", clientId);
+
+            //https://docs.microsoft.com/en-us/microsoftteams/platform/tabs/how-to/authentication/auth-tab-aad
+            microsoftTeams.authentication.authenticate({
+                url: loginUrl.toString(),
+                width: 600,
+                height: 535,
+                successCallback: function (result) {
+                    console.log(result);
+                    resolve(result);
+                },
+                failureCallback: function (reason) {
+                    console.error(reason);
+                    reject(reason);
+                }
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    })
+}
+
+export async function userInteractionAuth(consentNeeded: () => void): Promise<TeamsUserCredential> {
+    //To test and revok application auth => https://myapplications.microsoft.com/
     console.log("initAuth");
     const cred = getCredential();
-    //https://docs.microsoft.com/en-us/microsoftteams/platform/tabs/how-to/authentication/auth-flow-tab
-    microsoftTeams.authentication.authenticate();
+    //await teamsAuth();
     await initGraphToolkit(cred, getScopes());
     await checkIsConsentNeeded(consentNeeded);
     return cred;
 }
 
-export async function logout(){
-    if(Providers.globalProvider.state === ProviderState.SignedIn){
-        if(Providers.globalProvider && Providers.globalProvider.logout){
+export async function logout() {
+    if (Providers.globalProvider.state === ProviderState.SignedIn) {
+        if (Providers.globalProvider && Providers.globalProvider.logout) {
             await Providers.globalProvider.logout();
         }
         Providers.globalProvider.setState(ProviderState.SignedOut);

@@ -6,6 +6,7 @@ import SidePanelConfigTab from "./SidePanelConfigTab";
 import ControlableProfilCard from "../../components/profile/ControlableProfilCard";
 import { meetVsTeamsBridge } from "../../service/auth/MeetVsTeamsBridge";
 import { AccountAuth } from "../../components/profile/AccountAuth";
+import { VERSION } from "../../Version";
 
 
 export default class SceneTab extends React.Component {
@@ -30,6 +31,8 @@ export default class SceneTab extends React.Component {
 
     let urlParams = new URL(window.location.href).searchParams;
     let config = JSON.parse(decodeURIComponent(window.atob( urlParams.get('data') || "{}" )));
+    let frameUrl = new URL(config.url)
+    frameUrl.searchParams.set("verion", VERSION);//add a parameters to refresh cache on new version
 
     return (
       <>
@@ -48,7 +51,7 @@ export default class SceneTab extends React.Component {
           ref={(ref)=>{
             meetVsTeamsBridge.setIframe(ref);
           }}
-          src={config.url}
+          src={frameUrl.toString()}
           loading="eager" 
           style={{"width": "100%", "height": "100%","margin":0,"padding": 0,"border":0}}></iframe>}
       </>

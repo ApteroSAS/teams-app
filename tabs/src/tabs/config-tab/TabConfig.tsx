@@ -118,6 +118,7 @@ class TabConfig extends React.Component {
       //ignore error
     }
     frameUrl.searchParams.set("msteams", "true");
+    frameUrl.searchParams.set("verion", VERSION);//add a parameters to refresh cache on new version
 
     let roomUrl = this.state.url
     try {
