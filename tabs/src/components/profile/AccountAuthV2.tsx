@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@fluentui/react-northstar";
-import { useGraph } from "./lib/useGraph";
+import { useGraph } from "../../service/lib/useGraph";
 import { ProfileCard } from "./ProfileCard";
 import { getScopes } from "../../service/auth/AuthScope";
 

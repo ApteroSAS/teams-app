@@ -1,9 +1,9 @@
 import React from "react";
 
 import { PersonCard, MgtPersonCard } from '@microsoft/mgt-react';
-import { getScopes } from "../../service/auth/AuthScope";
+import { getCredential, getScopes } from "../../service/auth/AuthScope";
 import * as microsoftTeams from "@microsoft/teams-js";
-import { createMicrosoftGraphClient, TeamsUserCredential } from "@microsoft/teamsfx";
+import { createMicrosoftGraphClient } from "@microsoft/teamsfx";
 import { CHANGE_USER, meetVsTeamsBridge } from "../../service/auth/MeetVsTeamsBridge";
 import { Button } from "@fluentui/react-northstar";
 
@@ -28,8 +28,7 @@ export default class ControlableProfilCard extends React.Component<any,any> {
             try{
                 if(data.data.uid){
                     if(!this.uidUserCache[data.data.email]){
-                        const credential = new TeamsUserCredential();
-                        const graph = createMicrosoftGraphClient(credential, getScopes());
+                        const graph = createMicrosoftGraphClient(getCredential(), getScopes());
                         let profile:any = await (graph.api('users/')
                         .filter("id eq '" + data.data.uid + "'")
                         .get());
@@ -38,8 +37,7 @@ export default class ControlableProfilCard extends React.Component<any,any> {
                     this.setState({ user:this.uidUserCache[data.data.uid]  || "", expanded: false });
                 }else if(data.data.email){
                     if(!this.emailUserCache[data.data.email]){
-                        const credential = new TeamsUserCredential();
-                        const graph = createMicrosoftGraphClient(credential, getScopes());
+                        const graph = createMicrosoftGraphClient(getCredential(), getScopes());
                         let profile:any = await (graph.api('users/')
                         .filter("mail eq '" + data.data.email + "'")
                         .get());

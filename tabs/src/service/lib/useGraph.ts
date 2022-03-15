@@ -1,7 +1,7 @@
 import { useData } from "./useData";
-import { TeamsUserCredential, createMicrosoftGraphClient } from "@microsoft/teamsfx";
+import { createMicrosoftGraphClient } from "@microsoft/teamsfx";
 import { Client, GraphError } from "@microsoft/microsoft-graph-client";
-import { getScopes } from "../../../service/auth/AuthScope";
+import { getCredential, getScopes } from "../auth/AuthScope";
 
 export function useGraph<T>(
   asyncFunc: (graph: Client) => Promise<T>,
@@ -10,8 +10,7 @@ export function useGraph<T>(
   const { scope } = { scope: getScopes(), ...options };
   const initial = useData(async () => {
     try {
-      const credential = new TeamsUserCredential();
-      const graph = createMicrosoftGraphClient(credential, scope);
+      const graph = createMicrosoftGraphClient(getCredential(), scope);
       return await asyncFunc(graph);
     } catch (err: unknown) {
       if (err instanceof GraphError && err.code?.includes("UiRequiredError")) {
@@ -24,9 +23,8 @@ export function useGraph<T>(
 
   const { data, error, loading, reload } = useData(
     async () => {
-      const credential = new TeamsUserCredential();
-      await credential.login(scope);
-      const graph = createMicrosoftGraphClient(credential, scope);
+      await getCredential().login(scope);
+      const graph = createMicrosoftGraphClient(getCredential(), scope);
       return await asyncFunc(graph);
     },
     { auto: false }

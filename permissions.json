@@ -4,8 +4,8 @@
         "delegated": [
             "Contacts.Read",
             "Presence.Read.All",
-            "User.Read.All",
-            "People.Read.All"
+            "User.ReadBasic.All",
+            "People.Read"
         ],
         "application": []
     }

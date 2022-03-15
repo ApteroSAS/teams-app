@@ -4,6 +4,6 @@ import App from "./App";
 import "./index.css";
 import { lisenToAuthTokenrequest } from "./service/auth/AuthScope";
 import { meetVsTeamsBridge } from "./service/auth/MeetVsTeamsBridge";
-meetVsTeamsBridge.start();
 lisenToAuthTokenrequest();
+meetVsTeamsBridge.start();
 ReactDOM.render(<App />, document.getElementById("root"));

@@ -6,6 +6,9 @@ export const AUTH_TOKEN = "ms-teams-auth-token";
 export const CHANGE_USER = "ms-teams-change-selected-user";
 export const CHANGE_SETTINGS_URL = "ms-teams-change-settings-url";
 export const DECLARE_FRAME_SIZE = "ms-teams-declare-frame-size";
+export const REQUEST_USER_INFO = "ms-teams-request-user-info";
+export const USER_INFO = "ms-teams-user-info";
+export const RELOAD = "ms-teams-reload";
 
 export class MeetVsTeamsBridge {
 
@@ -18,6 +21,7 @@ export class MeetVsTeamsBridge {
                 if (event.data) {
                     var data = JSON.parse(event.data);
                     if (data.type) {
+                        console.log("RECV :",data);
                         this.eventListener.emit(data.type, data)
                     }
                 }
@@ -29,7 +33,10 @@ export class MeetVsTeamsBridge {
 
     setIframe(iframe: HTMLIFrameElement | null) {
         //this can comes from react and thus beware of spam
-        if(this.iframe != iframe){
+        if(!iframe){
+            return;
+        }
+        if(this.iframe?.src !== iframe.src){
             this.iframe = iframe;
             if (this.iframe) {
                 this.sendIframeMessage(INIT_OK, {});
@@ -37,8 +44,9 @@ export class MeetVsTeamsBridge {
         }
     }
 
-    sendIframeMessage(type: string, data: any) {
+    sendIframeMessage(type: string, data: any = {}) {
         if (this.iframe && this.iframe.contentWindow) {
+            console.log("SEND:",type,data);
             this.iframe.contentWindow.postMessage(JSON.stringify({ type, data }), "*");
         }
     }

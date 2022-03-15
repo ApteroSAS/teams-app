@@ -5,6 +5,8 @@ import { Button, Input } from "@fluentui/react-northstar";//https://fluentsite.z
 import { VERSION } from "../../Version";
 import { roomService } from "../../service/RoomService";
 import { CHANGE_SETTINGS_URL, DECLARE_FRAME_SIZE, meetVsTeamsBridge } from "../../service/auth/MeetVsTeamsBridge";
+import { getDefaultOrigin } from "../../service/Origin";
+import { getCredential } from "../../service/auth/AuthScope";
 
 /**
  * The 'Config' component is used to display your group tabs
@@ -54,6 +56,9 @@ class TabConfig extends React.Component {
       meetVsTeamsBridge.eventListener.off(DECLARE_FRAME_SIZE, callbackSize);
       meetVsTeamsBridge.eventListener.off(CHANGE_SETTINGS_URL, callbackUrl);
     }
+    getCredential().getUserInfo().then(data=>{
+      this.setState({ logged: true });
+    })
   }
 
   componentWillUnmount() {
@@ -106,13 +111,13 @@ class TabConfig extends React.Component {
         //ignore error
       }
     }
-    let frameUrl = new URL("https://meet.aptero.co/microsoft-settings.html");
+    let frameUrl = new URL(getDefaultOrigin()+"/microsoft-settings.html");
     try {
       frameUrl = new URL((new URL(this.state.url).origin) + "/microsoft-settings.html");
-      frameUrl.searchParams.set("msteams", "true");
     } catch (e) {
       //ignore error
     }
+    frameUrl.searchParams.set("msteams", "true");
 
     let roomUrl = this.state.url
     try {
@@ -121,9 +126,9 @@ class TabConfig extends React.Component {
       //ignore error
     }
     return (
-      <div>
+      <div style={{margin:"8px"}}>
         <h2>Identity</h2>
-        <AccountAuth loginCompleted={() => { this.setState({ logged: true }) }} />
+        <AccountAuth/>
         {this.state.logged && <>
           <h2>Room</h2>
           {this.state.url && <>

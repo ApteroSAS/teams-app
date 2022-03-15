@@ -10,7 +10,7 @@ var clientId = process.env.REACT_APP_CLIENT_ID;
 // TODO fix this when the SDK stops hiding global state!
 let initialized = false;
 
-export function useTeamsFx() {
+export function useTeamsFx(authorityHost:string|undefined = undefined) {
   const [result] = useTeams({});
   const { error, loading } = useData(async () => {
     if (!initialized) {
@@ -20,8 +20,9 @@ export function useTeamsFx() {
       }
       loadConfiguration({
         authentication: {
+          authorityHost,
           initiateLoginEndpoint: startLoginPageUrl,
-          simpleAuthEndpoint: teamsfxEndpoint,
+          //simpleAuthEndpoint: teamsfxEndpoint,//https://github.com/OfficeDev/TeamsFx/wiki/How-Authentication-Works-in-TeamsFx-Tab-Template
           clientId: clientId,
         },
         resources: [

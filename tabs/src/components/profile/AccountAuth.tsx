@@ -1,18 +1,24 @@
 import React from "react";
-import { Button } from "@fluentui/react-northstar";
-import { useGraph } from "./lib/useGraph";
-import { getScopes, initAuth } from "../../service/auth/AuthScope";
+import { Button, Flex } from "@fluentui/react-northstar";
+import { useGraph } from "../../service/lib/useGraph";
+import { getScopes, logout, passiveAuth, userInteractionAuth } from "../../service/auth/AuthScope";
 import { Login } from "@microsoft/mgt-react";
+import { LightProfileCard } from "./LightProfileCard";
 
 
 
-export function AccountAuth(props:{loginCompleted?:()=>void}) {
-  
+export function AccountAuth(props: {
+  loginInitiated?: (e: Event) => void;
+  loginCompleted?: (e: Event) => void;
+  loginFailed?: (e: Event) => void;
+  logoutInitiated?: (e: Event) => void;
+  logoutCompleted?: (e: Event) => void;
+}
+) {
+
   const { loading, error, data, reload } = useGraph(
     async (graph) => {
-      await initAuth(()=>{
-          console.error("consent needed");
-      });
+      await passiveAuth();
       const profile = await graph.api("/me").get();
       let photoUrl = "";
       try {
@@ -25,23 +31,35 @@ export function AccountAuth(props:{loginCompleted?:()=>void}) {
     },
     { scope: getScopes() }
   );
-  console.log("user id :"+data?.profile.id);
+
+  const requestAuth = async ()=>{
+    await userInteractionAuth(()=>{
+      console.error("consent is needed");
+    })
+    reload();
+  }
+
+  console.log("user id :" + data?.profile.id);
   //https://docs.microsoft.com/en-us/graph/toolkit/components/person-card
   return (
-    <div>
-      {!data && 
-      <div>
-        <p>Click below to authorize this app.</p>
-        <Button primary content="Authorize" disabled={loading} onClick={reload} />
-      </div>
-      }
-      {loading && <Login loginCompleted={props.loginCompleted} />}
-      {!loading && error && (
-        <div className="error">
-          Failed to read your profile. Please try again later. <br /> Details: {error.toString()}
+    <>
+      {!data &&
+        <div style={{ margin: "8px" }} >
+          {!loading && error && <p>Failed to authorize. Please try again. <br /> Details: {error.toString()}</p>}
+          {!loading && !error && <p>Authorize this app to acces advanced features.</p>}
+          <Flex gap="gap.small">
+            <LightProfileCard />
+            <Button primary content="Authorize" disabled={loading} onClick={requestAuth} style={{ height: "auto" }} />
+          </Flex>
         </div>
-      )}
-      {!loading && data && <Login loginCompleted={props.loginCompleted} />}
-    </div>
+      }
+      {!loading && data && <Login {...props} 
+      loginInitiated={()=>{
+        requestAuth();
+      }} 
+      logoutInitiated={()=>{
+        logout();
+      }}/>}
+    </>
   );
 }
