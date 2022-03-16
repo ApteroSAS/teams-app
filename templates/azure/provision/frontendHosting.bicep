@@ -19,5 +19,5 @@ resource storage 'Microsoft.Storage/storageAccounts@2021-06-01' = {
 var siteDomain = replace(replace(storage.properties.primaryEndpoints.web, 'https://', ''), '/', '')
 
 output resourceId string = storage.id
-output endpoint string = 'https://${siteDomain}'
-output domain string = siteDomain
+output endpoint string = 'https://aptero.azureedge.net'
+output domain string = 'aptero.azureedge.net'

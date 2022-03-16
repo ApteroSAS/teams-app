@@ -1,7 +1,7 @@
 import { useData } from "./useData";
 import { createMicrosoftGraphClient } from "@microsoft/teamsfx";
 import { Client, GraphError } from "@microsoft/microsoft-graph-client";
-import { getCredential, getScopes } from "../auth/AuthScope";
+import { getCredential, getScopes } from "../auth/Auth";
 
 export function useGraph<T>(
   asyncFunc: (graph: Client) => Promise<T>,

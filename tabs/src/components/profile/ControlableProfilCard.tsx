@@ -1,7 +1,7 @@
 import React from "react";
 
 import { PersonCard, MgtPersonCard } from '@microsoft/mgt-react';
-import { getCredential, getScopes } from "../../service/auth/AuthScope";
+import { getCredential, getScopes } from "../../service/auth/Auth";
 import * as microsoftTeams from "@microsoft/teams-js";
 import { createMicrosoftGraphClient } from "@microsoft/teamsfx";
 import { CHANGE_USER, meetVsTeamsBridge } from "../../service/auth/MeetVsTeamsBridge";

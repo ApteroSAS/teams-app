@@ -13,7 +13,7 @@
     "fx-resource-appstudio": {
         "tenantId": "48caed5d-d20d-40ce-b0cd-9261fc5d8f83",
         "teamsAppId": "83e15843-4af6-4b33-bacc-d11827352c3e",
-        "teamsAppUpdatedAt": 1647356800098
+        "teamsAppUpdatedAt": 1647438329512
     },
     "fx-resource-identity": {
         "identityName": "apteroprode983d5",
@@ -28,15 +28,11 @@
         "tenantId": "48caed5d-d20d-40ce-b0cd-9261fc5d8f83",
         "oauthHost": "https://login.microsoftonline.com",
         "oauthAuthority": "https://login.microsoftonline.com/48caed5d-d20d-40ce-b0cd-9261fc5d8f83",
-        "applicationIdUris": "api://apteroprode983d5tab.z6.web.core.windows.net/8cb358b6-25aa-4afc-b403-3362db42ea49"
-    },
-    "fx-resource-simple-auth": {
-        "endpoint": "https://apteroprode983d5simpleauth.azurewebsites.net",
-        "webAppResourceId": "/subscriptions/ff4fdd30-08ff-40e8-9225-720c1f964f08/resourceGroups/Aptero-prod-4-rg/providers/Microsoft.Web/sites/apteroprode983d5simpleAuth"
+        "applicationIdUris": "api://aptero.azureedge.net/8cb358b6-25aa-4afc-b403-3362db42ea49"
     },
     "fx-resource-frontend-hosting": {
-        "domain": "apteroprode983d5tab.z6.web.core.windows.net",
-        "endpoint": "https://apteroprode983d5tab.z6.web.core.windows.net",
+        "domain": "aptero.azureedge.net",
+        "endpoint": "https://aptero.azureedge.net",
         "storageResourceId": "/subscriptions/ff4fdd30-08ff-40e8-9225-720c1f964f08/resourceGroups/Aptero-prod-4-rg/providers/Microsoft.Storage/storageAccounts/apteroprode983d5tab"
     }
 }

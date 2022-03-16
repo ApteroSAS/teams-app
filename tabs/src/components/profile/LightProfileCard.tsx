@@ -1,6 +1,6 @@
 import { Avatar, Card, Flex, Segment, Text } from "@fluentui/react-northstar";
 import React from "react";
-import { getCredential } from "../../service/auth/AuthScope";
+import { getCredential } from "../../service/auth/Auth";
 import { useData } from "../../service/lib/useData";
 
 export function LightProfileCard() {

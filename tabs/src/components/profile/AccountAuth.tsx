@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Flex } from "@fluentui/react-northstar";
 import { useGraph } from "../../service/lib/useGraph";
-import { getScopes, logout, passiveAuth, userInteractionAuth } from "../../service/auth/AuthScope";
+import { getScopes, logout, passiveAuth, userInteractionAuth } from "../../service/auth/Auth";
 import { Login } from "@microsoft/mgt-react";
 import { LightProfileCard } from "./LightProfileCard";
 

@@ -6,7 +6,7 @@ import { VERSION } from "../../Version";
 import { roomService } from "../../service/RoomService";
 import { CHANGE_SETTINGS_URL, DECLARE_FRAME_SIZE, meetVsTeamsBridge } from "../../service/auth/MeetVsTeamsBridge";
 import { getDefaultOrigin } from "../../service/Origin";
-import { getCredential } from "../../service/auth/AuthScope";
+import { getAuthEvents, TOKEN_RECEIVED, LOGGED_BASIC_INFO } from "../../service/auth/Auth";
 
 /**
  * The 'Config' component is used to display your group tabs
@@ -52,13 +52,20 @@ class TabConfig extends React.Component {
       }
     }
     meetVsTeamsBridge.eventListener.on(CHANGE_SETTINGS_URL, callbackUrl);
+    
+    const onLogged = ()=>{
+      this.setState({ logged: true });
+    }
+
+    getAuthEvents().on(LOGGED_BASIC_INFO,onLogged);
+    getAuthEvents().on(TOKEN_RECEIVED,onLogged);
+
     this.removeListeners = () => {
       meetVsTeamsBridge.eventListener.off(DECLARE_FRAME_SIZE, callbackSize);
       meetVsTeamsBridge.eventListener.off(CHANGE_SETTINGS_URL, callbackUrl);
+      getAuthEvents().off(LOGGED_BASIC_INFO,onLogged);
+      getAuthEvents().off(TOKEN_RECEIVED,onLogged);
     }
-    getCredential().getUserInfo().then(data=>{
-      this.setState({ logged: true });
-    })
   }
 
   componentWillUnmount() {
@@ -129,7 +136,7 @@ class TabConfig extends React.Component {
     return (
       <div style={{margin:"8px"}}>
         <h2>Identity</h2>
-        <AccountAuth/>
+        <AccountAuth />
         {this.state.logged && <>
           <h2>Room</h2>
           {this.state.url && <>

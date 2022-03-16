@@ -1,9 +1,12 @@
 {
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.11/MicrosoftTeams.schema.json",
     "manifestVersion": "1.11",
-    "version": "1.1.18",
+    "version": "1.1.22",
     "id": "{{state.fx-resource-appstudio.teamsAppId}}",
     "packageName": "com.microsoft.teams.extension",
+    "localizationInfo": {
+        "defaultLanguageTag": "en"
+    },   
     "developer": {
         "name": "Aptero",
         "websiteUrl": "https://www.aptero.co",
