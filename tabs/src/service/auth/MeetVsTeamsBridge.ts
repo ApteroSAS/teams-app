@@ -9,6 +9,7 @@ export const DECLARE_FRAME_SIZE = "ms-teams-declare-frame-size";
 export const REQUEST_USER_INFO = "ms-teams-request-user-info";
 export const USER_INFO = "ms-teams-user-info";
 export const RELOAD = "ms-teams-reload";
+export const PROCESS_DEEPLINK = "ms-teams-deep-link";
 
 export class MeetVsTeamsBridge {
 

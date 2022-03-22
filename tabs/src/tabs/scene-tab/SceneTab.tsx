@@ -1,12 +1,10 @@
 import React from "react";
 import * as microsoftTeams from "@microsoft/teams-js";
 import SidePanelConfigTab from "./SidePanelConfigTab";
-
-
-import ControlableProfilCard from "../../components/profile/ControlableProfilCard";
 import { meetVsTeamsBridge } from "../../service/auth/MeetVsTeamsBridge";
-import { AccountAuth } from "../../components/profile/AccountAuth";
 import { VERSION } from "../../Version";
+import { AuthorizePopUp } from "../../components/profile/AuthorizePopUp";
+import { Button, Popup } from "@fluentui/react-northstar";
 
 
 export default class SceneTab extends React.Component {
@@ -36,12 +34,15 @@ export default class SceneTab extends React.Component {
 
     return (
       <>
-      <div style={{position:"absolute", bottom:"20px",left:"20px",backgroundColor:"white"}}>
+      <div style={{position:"absolute", top:"70px",left:"50%",transform: "translate(-50%, -50%)",backgroundColor:"white"}}>
+        <AuthorizePopUp />
+      </div>
+      {/*<div style={{position:"absolute", bottom:"20px",left:"20px",backgroundColor:"white"}}>
         <AccountAuth />
       </div>
-      <div style={{position:"absolute", top:"20px",left:"20px",backgroundColor:"white"}}>
-        <ControlableProfilCard/>
-      </div>
+        <div style={{position:"absolute", top:"20px",left:"20px",backgroundColor:"white"}}>
+          <ControlableProfilCard/>
+      </div>*/}
       {this.state.frameContext==="loading" && <div>loading...</div>}
       {this.state.frameContext==="sidePanel" && <SidePanelConfigTab/>}
       {(this.state.frameContext!=="loading" && this.state.frameContext!=="sidePanel") && 

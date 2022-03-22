@@ -111,14 +111,15 @@ export async function logout() {
             await Providers.globalProvider.logout();
         }
         Providers.globalProvider.setState(ProviderState.SignedOut);
-        meetVsTeamsBridge.sendIframeMessage(RELOAD);
+        //meetVsTeamsBridge.sendIframeMessage(RELOAD);//Commented this because I suspect it cause a reload loop
     }
 }
 
 async function initBasicInfo():Promise<TeamsUserCredential> {
     const cred = getCredential();
-    await cred.getUserInfo();
+    const user = await cred.getUserInfo();
     events.emit(LOGGED_BASIC_INFO)
+    meetVsTeamsBridge.sendIframeMessage(USER_INFO, user);    
     return cred;
 }
 
@@ -193,9 +194,10 @@ function initGraphToolkit(credential: TeamsUserCredential, scope: string[]) {
 
 async function checkIsConsentNeeded(consentNeeded: () => void) {
     try {
-        await credential?.getToken(getScopes());
+        const token = await credential?.getToken(getScopes());
         Providers.globalProvider.setState(ProviderState.SignedIn);
         events.emit(AUTH_TOKEN);
+        meetVsTeamsBridge.sendIframeMessage(AUTH_TOKEN, { token: token});
     } catch (error) {
         Providers.globalProvider.setState(ProviderState.SignedOut);
         consentNeeded();
