@@ -7,8 +7,11 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "install:tabs": "cross-env cd tabs && npm install",
         "installAll": "cross-env npm install && npm run install:tabs",
-        "start": "npx @microsoft/teamsfx-cli preview --local",
-        "publish-app": "cross-env npx @microsoft/teamsfx-cli manifest validate && npx @microsoft/teamsfx-cli package && npx @microsoft/teamsfx-cli publish",
+        "start": "npx @microsoft/teamsfx-cli preview --local",    
+        "azure-local-setup":"cross-env npx @microsoft/teamsfx-cli account login azure && npx @microsoft/teamsfx-cli account set --subscription ff4fdd30-08ff-40e8-9225-720c1f964f08",    
+        "first-setup": "npx @microsoft/teamsfx-cli provision",
+        "package": "cross-env npx @microsoft/teamsfx-cli manifest validate && npx @microsoft/teamsfx-cli package",
+        "publish-app": "cross-env npm run package && npx @microsoft/teamsfx-cli deploy && npx @microsoft/teamsfx-cli publish",
         "build": "cross-env npx @microsoft/teamsfx-cli package"
     },
     "devDependencies": {

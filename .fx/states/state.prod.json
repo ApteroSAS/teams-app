@@ -13,7 +13,7 @@
     "fx-resource-appstudio": {
         "tenantId": "48caed5d-d20d-40ce-b0cd-9261fc5d8f83",
         "teamsAppId": "83e15843-4af6-4b33-bacc-d11827352c3e",
-        "teamsAppUpdatedAt": 1647947405430
+        "teamsAppUpdatedAt": 1648028963824
     },
     "fx-resource-identity": {
         "identityName": "apteroprode983d5",
@@ -22,7 +22,7 @@
     },
     "fx-resource-aad-app-for-teams": {
         "clientId": "8cb358b6-25aa-4afc-b403-3362db42ea49",
-        "clientSecret": "",
+        "clientSecret": "{{fx-resource-aad-app-for-teams.clientSecret}}",
         "objectId": "06b1df24-8b69-4113-9f66-8783b93bd3ec",
         "oauth2PermissionScopeId": "6872fde7-3826-4bfb-b8de-598a294aa0a9",
         "tenantId": "48caed5d-d20d-40ce-b0cd-9261fc5d8f83",
