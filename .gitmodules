@@ -1,0 +1,3 @@
+[submodule "meet-src"]
+	path = meet-src
+	url = https://github.com/ApteroSAS/Aptero-Meet.git

@@ -1,22 +1,18 @@
 {
-    "name": "Aptero",
-    "version": "0.0.1",
-    "description": "",
-    "author": "",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "install:tabs": "cross-env cd tabs && npm install",
-        "installAll": "cross-env npm install && npm run install:tabs",
-        "start": "npx @microsoft/teamsfx-cli preview --local",    
-        "azure-local-setup":"cross-env npx @microsoft/teamsfx-cli account login azure && npx @microsoft/teamsfx-cli account set --subscription ff4fdd30-08ff-40e8-9225-720c1f964f08",    
-        "first-setup": "npx @microsoft/teamsfx-cli provision",
-        "package": "cross-env npx @microsoft/teamsfx-cli manifest validate && npx @microsoft/teamsfx-cli package",
-        "publish-app": "cross-env npm run package && npx @microsoft/teamsfx-cli deploy && npx @microsoft/teamsfx-cli publish",
-        "build": "cross-env npx @microsoft/teamsfx-cli package"
-    },
-    "devDependencies": {
-        "@microsoft/teamsfx-cli": "0.*",
-        "cross-env": "^7.0.3"
-    },
-    "license": "MIT"
+  "name": "aptero-teams-app",
+  "version": "0.0.1",
+  "description": "Aptero",
+  "main": "src/index.js",
+  "scripts": {
+    "dev:teamsfx": "echo \"execute the server on manualy on port 53000 'yarn dev:teamsfx2' \"",
+    "dev:teamsfx2": "cross-env-shell \"env-cmd --silent -f ./tabs/.env.teamsfx.local yarn run start\"",
+    "build:teamsfx": "cross-env-shell \"env-cmd -f ./tabs/.env.teamsfx.${TEAMS_FX_ENV} yarn run build\"",
+    "build:teamsfx:dev": "cross-env TEAMS_FX_ENV=dev npm run build:teamsfx",
+    "start":"cross-env cd meet-src && yarn run start",
+    "build":"cross-env cd meet-src && yarn run build"
+  },
+
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+  },
 }
