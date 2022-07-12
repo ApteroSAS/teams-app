@@ -8,8 +8,8 @@
     "dev:teamsfx2": "cross-env-shell \"env-cmd --silent -f ./tabs/.env.teamsfx.local yarn run start\"",
     "build:teamsfx": "cross-env-shell \"env-cmd -f ./tabs/.env.teamsfx.${TEAMS_FX_ENV} yarn run build\"",
     "build:teamsfx:dev": "cross-env TEAMS_FX_ENV=dev npm run build:teamsfx",
-    "start":"cross-env cd meet-src && yarn run start",
-    "build":"cross-env cd meet-src && yarn run build"
+    "start":"yarn --cwd ./meet-src run start",
+    "build":"yarn --cwd ./meet-src run build"
   },
 
   "devDependencies": {
