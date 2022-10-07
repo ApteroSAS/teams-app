@@ -1,12 +1,12 @@
 {
-    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.11/MicrosoftTeams.schema.json",
-    "manifestVersion": "1.11",
-    "version": "2.0.13",
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.14/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.14",
+    "version": "2.0.14",
     "id": "{{state.fx-resource-appstudio.teamsAppId}}",
     "packageName": "com.microsoft.teams.extension",
     "localizationInfo": {
         "defaultLanguageTag": "en"
-    },   
+    },
     "developer": {
         "name": "Aptero",
         "websiteUrl": "https://www.aptero.co",
@@ -37,12 +37,12 @@
                 "groupchat"
             ],
             "context": [
-              "channelTab",
-              "privateChatTab",
-              "meetingChatTab",
-              "meetingDetailsTab",
-              "meetingSidePanel",
-              "meetingStage"
+                "channelTab",
+                "privateChatTab",
+                "meetingChatTab",
+                "meetingDetailsTab",
+                "meetingSidePanel",
+                "meetingStage"
             ]
         }
     ],
@@ -50,7 +50,25 @@
         "identity",
         "messageTeamMembers"
     ],
-    "validDomains": ["*.aptero.co","*.axolotis.com"],
+    "authorization": {
+        "permissions": {
+            "orgWide": [],
+            "resourceSpecific": [
+                {
+                    "name": "MeetingStage.Write.Chat",
+                    "type": "Delegated"
+                },
+                {
+                    "name": "ChannelMeetingStage.Write.Group",
+                    "type": "Delegated"
+                }
+            ]
+        }
+    },
+    "validDomains": [
+        "*.aptero.co",
+        "*.axolotis.com"
+    ],
     "webApplicationInfo": {
         "id": "{{state.fx-resource-aad-app-for-teams.clientId}}",
         "resource": "{{{state.fx-resource-aad-app-for-teams.applicationIdUris}}}"
