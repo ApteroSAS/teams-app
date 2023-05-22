@@ -3,5 +3,8 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/meet-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/meet-src/modules/basic-modules" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/meet-src/modules/teams-module" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/meet-src/modules/teams-module/modules/basic-modules" vcs="Git" />
   </component>
 </project>
