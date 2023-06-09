@@ -1,8 +1,8 @@
 {
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.14/MicrosoftTeams.schema.json",
     "manifestVersion": "1.14",
-    "version": "2.0.18",
-    "id": "d84875b4-f37e-4e90-97aa-f15f9b6e82b8",
+    "version": "2.0.19",
+    "id": "3501cb25-193e-48b5-baef-c0bbf37ff563",
     "packageName": "com.microsoft.teams.extension",
     "localizationInfo": {
         "defaultLanguageTag": "en"
@@ -18,12 +18,12 @@
         "outline": "resources/outline.png"
     },
     "name": {
-        "short": "Aptero-local-debug",
-        "full": "Full name for Aptero-local-debug"
+        "short": "Aptero (local)",
+        "full": "Aptero - 3D Spaces (local)"
     },
     "description": {
         "short": "Micro metaverse for business",
-        "full": "**Customized metaverse inside workplace platforms like Microsoft Teams that can be used as a collaborative tool/virtual campus for company teams.**\n\n\n\n**🚀** **Your metaverse is now accessible within Microsoft Teams!** **🚀**\n\nIt is now possible to have 3D worlds and virtual campus directly within your teams channel and meeting !\n\nWe provide a 3D immersive space designed by you to organize your events, trainings and meetings. Create your digital twin and discuss naturally with your colleagues mixing video conferencing and metaverses.\n\nHow does it work ?\n\n-   Contact us to create your first 3D space together\n-   Add it within your teams\n-   Join immersive highly realistic digital twins, trainings or showrooms inside Teams.\n\nYou can also try some 3D spaces available by default inside our app.\n\n**Contact us at contact@aptero.co or on our website !**"
+        "full": "Your events and immersive training in 3D. Create your immersive 3D rooms with your companys DNA. Organize your meetings, events and training in a fun way remotely. Compatible with any device, personalize and broadcast your content."
     },
     "accentColor": "#FFFFFF",
     "bots": [],
@@ -52,7 +52,6 @@
     ],
     "authorization": {
         "permissions": {
-            "orgWide": [],
             "resourceSpecific": [
                 {
                     "name": "MeetingStage.Write.Chat",
@@ -68,11 +67,10 @@
     "validDomains": [
         "*.aptero.co",
         "*.axolotis.com",
-        "localhost",
         "localhost:53000"
     ],
     "webApplicationInfo": {
-        "id": "2168c5ad-3d42-4903-b88b-23c21dfd67aa",
-        "resource": "api://localhost/2168c5ad-3d42-4903-b88b-23c21dfd67aa"
+        "id": "12ee7a90-4b99-4717-becc-9384ab5d09c3",
+        "resource": "api://localhost:53000/12ee7a90-4b99-4717-becc-9384ab5d09c3"
     }
 }

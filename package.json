@@ -11,8 +11,9 @@
     "start":"yarn --cwd ./meet-src run start",
     "build":"yarn --cwd ./meet-src run build"
   },
-
   "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.21",
     "cross-env": "^7.0.3"
   }
 }
