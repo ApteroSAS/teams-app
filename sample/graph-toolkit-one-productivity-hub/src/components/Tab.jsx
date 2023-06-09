@@ -15,6 +15,9 @@ import {
 } from "@microsoft/mgt-react";
 import { TeamsFxProvider } from "@microsoft/mgt-teamsfx-provider";
 import { CacheService } from "@microsoft/mgt";
+import { TeamsLoginService } from "./lib/TeamsLoginService";
+import { Properties } from "./lib/Properties";
+import { MicrosoftGraphService } from "./lib/MicrosoftGraphService";
 
 class Tab extends React.Component {
   constructor(props) {
@@ -49,6 +52,7 @@ class Tab extends React.Component {
     } catch (error) {
       consentNeeded = true;
     }
+
     this.setState({
       showLoginPage: consentNeeded,
     });
@@ -87,6 +91,14 @@ class Tab extends React.Component {
                 personQuery="me"
                 view={PersonViewType.threelines}
               ></Person>
+              <Button onClick={
+                async ()=>{
+                  const properties = new Properties();
+                  const microsoftGraphService = new MicrosoftGraphService();
+                  new TeamsLoginService(properties,microsoftGraphService);
+                  await microsoftGraphService.awaitReady()
+                  console.log(await microsoftGraphService.getUserDetails());
+                }}>Graph Call (see console)</Button>
             </div>
 
             <div className="features">
