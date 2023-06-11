@@ -1,6 +1,5 @@
 export const Scopes = [
     "User.Read",
-    "User-LifeCycleInfo.Read.All"
 ];
     /*Define scope for the required permissions*/
     /*this.scope = [

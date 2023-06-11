@@ -26,20 +26,19 @@ import config from "./sample/config";
  * of the app.
  */
 export default function App() {
-  const { loading, theme, themeString, teamsUserCredential } =
+  /*const { loading, theme, themeString, teamsUserCredential } =
     useTeamsUserCredential({
       initiateLoginEndpoint: config.initiateLoginEndpoint!,
       clientId: config.clientId!,
-    });
+    });*/
+  const themeString = "light";
+  const loading = false;
   return (
-    <TeamsFxContext.Provider
-      value={{ theme, themeString, teamsUserCredential }}
-    >
       <FluentProvider
         theme={
-          themeString === "dark"
+          themeString as any === "dark"
             ? teamsDarkTheme
-            : themeString === "contrast"
+            : themeString as any === "contrast"
             ? teamsHighContrastTheme
             : {
                 ...teamsLightTheme,
@@ -62,6 +61,5 @@ export default function App() {
           )}
         </Router>
       </FluentProvider>
-    </TeamsFxContext.Provider>
   );
 }

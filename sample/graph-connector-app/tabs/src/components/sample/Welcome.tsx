@@ -6,9 +6,11 @@ import { Scopes } from "./constants";
 import { TeamsFxContext } from "../Context";
 import { MicrosoftGraphService } from "./lib/MicrosoftGraphService";
 import { TeamsLoginService } from "./lib/TeamsLoginService";
+import { IdentityType, TeamsFx, TeamsUserCredential } from "@microsoft/teamsfx";
+import config from "./config";
 
 export function Welcome() {
-  const { teamsUserCredential } = useContext(TeamsFxContext);
+  /*const { teamsUserCredential } = useContext(TeamsFxContext);
   const { loading, error, data, reload } = useGraphWithCredential(
     async (graph, teamsUserCredential, scope) => {
       // Call graph api directly to get user profile information
@@ -16,7 +18,11 @@ export function Welcome() {
       return { profile };
     },
     { scope: Scopes, credential: teamsUserCredential }
-  );
+  );*/
+  const loading = false;
+  const data = true;
+  const error = false;
+  const reload = ()=>{}
 
   return (
     <>
@@ -29,9 +35,9 @@ export function Welcome() {
         <div className="welcome page">
           <div className="narrow page-padding">
             <Image src="hello.png" />
-            <h1 className="center">Hello, {data.profile.displayName}!</h1>
+            {/*<h1 className="center">Hello, {data.profile.displayName}!</h1>*/}
             <p className="center">
-              Let's build your first custom Microsoft Graph connector.
+              Let's build your first custom Microsoft Graph connector.<br/>
               <Button onClick={
                 async ()=>{
                   console.log("Graph API call");
@@ -40,7 +46,27 @@ export function Welcome() {
                   tls.initGraphTeamsUserCredential(Scopes);
                   await microsoftGraphService.awaitReady()
                   console.log(await microsoftGraphService.getUserDetails());
-                }}>Graph Call (see console)</Button>
+                }}>Graph Call (see console)</Button><br/>
+                <Button onClick={
+                  async ()=>{
+                    console.log("TeamsFx Login");
+                    const teamsfx = new TeamsFx(IdentityType.User,{
+                      initiateLoginEndpoint: config.initiateLoginEndpoint!,
+                      clientId: config.clientId!
+                    });
+                    await teamsfx.login(Scopes);
+                    console.log("TeamsFx Login done");
+                  }}>TeamsFx Login</Button><br/>
+                  <Button onClick={
+                    async ()=>{
+                      console.log("teamsUserCredential Login");
+                      const teamsUserCredential = new TeamsUserCredential({
+                        initiateLoginEndpoint: config.initiateLoginEndpoint!,
+                        clientId: config.clientId!
+                      });
+                      await teamsUserCredential.login(Scopes);
+                      console.log("teamsUserCredential Login done");
+                    }}>TeamsUserCredential Login</Button>
             </p>
           </div>
         </div>
@@ -56,7 +82,7 @@ export function Welcome() {
       {!loading && error && (
         <div className="error">
           Failed to get your profile. Please try again later. <br /> Details:{" "}
-          {error.toString()}
+          {/*error.toString()*/}
         </div>
       )}
     </>
