@@ -46,6 +46,17 @@
             ]
         }
     ],
+    "staticTabs": [
+        {
+            "entityId": "index",
+            "name": "Admin Tab",
+            "contentUrl": "https://localhost:53000/microsoft-settings.html?msteams=true",
+            "websiteUrl": "https://localhost:53000/microsoft-settings.html?msteams=true",
+            "scopes": [
+                "personal"
+            ]
+        }
+    ],
     "permissions": [
         "identity",
         "messageTeamMembers"

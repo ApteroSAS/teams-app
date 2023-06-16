@@ -46,6 +46,17 @@
             ]
         }
     ],
+    "staticTabs": [
+        {
+            "entityId": "index",
+            "name": "Admin Tab",
+            "contentUrl": "${{PROVISIONOUTPUT__FRONTENDHOSTINGOUTPUT__ENDPOINT}}/microsoft-settings.html?msteams=true",
+            "websiteUrl": "${{PROVISIONOUTPUT__FRONTENDHOSTINGOUTPUT__ENDPOINT}}/microsoft-settings.html?msteams=true",
+            "scopes": [
+                "personal"
+            ]
+        }
+    ],
     "permissions": [
         "identity",
         "messageTeamMembers"

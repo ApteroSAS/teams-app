@@ -94,11 +94,15 @@
     ],
     "replyUrlsWithType": [
         {
+            "url": "https://localhost:53000/auth-end.html",
+            "type": "Web"
+        },
+        {
             "url": "https://localhost:53000/auth-end.html?clientId=12ee7a90-4b99-4717-becc-9384ab5d09c3",
             "type": "Spa"
         },
         {
-            "url": "https://localhost:53000/auth-end.html",
+            "url": "https://localhost:53000/blank-auth-end.html",
             "type": "Spa"
         }
     ]
