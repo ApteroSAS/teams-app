@@ -1,7 +1,7 @@
 {
-    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.14/MicrosoftTeams.schema.json",
-    "manifestVersion": "1.14",
-    "version": "2.0.19",
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.16",
+    "version": "2.0.21",
     "id": "${{TEAMS_APP_ID}}",
     "packageName": "com.microsoft.teams.extension",
     "localizationInfo": {
@@ -14,8 +14,8 @@
         "termsOfUseUrl": "https://www.aptero.co/legal/termsofuse.html"
     },
     "icons": {
-        "color": "resources/color.png",
-        "outline": "resources/outline.png"
+        "color": "color.png",
+        "outline": "outline.png"
     },
     "name": {
         "short": "${{CONFIG__MANIFEST__APPNAME__SHORT}}",
@@ -28,6 +28,9 @@
     "accentColor": "#FFFFFF",
     "bots": [],
     "composeExtensions": [],
+    "meetingExtensionDefinition": {
+        "supportsAnonymousGuestUsers": true
+    },
     "configurableTabs": [
         {
             "configurationUrl": "${{PROVISIONOUTPUT__FRONTENDHOSTINGOUTPUT__ENDPOINT}}/microsoft-settings.html?msteams=true",
