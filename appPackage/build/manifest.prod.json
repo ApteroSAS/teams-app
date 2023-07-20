@@ -1,7 +1,7 @@
 {
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
     "manifestVersion": "1.16",
-    "version": "2.0.22",
+    "version": "2.0.23",
     "id": "83e15843-4af6-4b33-bacc-d11827352c3e",
     "packageName": "com.microsoft.teams.extension",
     "localizationInfo": {
@@ -18,8 +18,8 @@
         "outline": "outline.png"
     },
     "name": {
-        "short": "Aptero 3D Spaces",
-        "full": "Aptero - 3D Spaces"
+        "short": "Aptero 3D Space",
+        "full": "Aptero - 3D Space"
     },
     "description": {
         "short": "Micro metaverse for business",
@@ -31,8 +31,9 @@
     "meetingExtensionDefinition": {
         "supportsAnonymousGuestUsers": true
     },
+    "showLoadingIndicator": true,
     "subscriptionOffer": {
-        "offerId": "offer-saas-aptero"
+        "offerId": "aptero1644253171882.offer-saas-aptero"
     },
     "configurableTabs": [
         {
