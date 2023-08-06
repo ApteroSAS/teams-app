@@ -1,0 +1,181 @@
+{
+	"id": "06b1df24-8b69-4113-9f66-8783b93bd3ec",
+	"acceptMappedClaims": null,
+	"accessTokenAcceptedVersion": 2,
+	"addIns": [],
+	"allowPublicClient": null,
+	"appId": "8cb358b6-25aa-4afc-b403-3362db42ea49",
+	"appRoles": [],
+	"oauth2AllowUrlPathMatching": false,
+	"createdDateTime": "2022-03-04T14:37:53Z",
+	"description": null,
+	"certification": null,
+	"disabledByMicrosoftStatus": null,
+	"groupMembershipClaims": null,
+	"identifierUris": [
+		"api://meet.aptero.co/8cb358b6-25aa-4afc-b403-3362db42ea49"
+	],
+	"informationalUrls": {
+		"termsOfService": "https://www.aptero.co/legal/termsofuse.html",
+		"support": null,
+		"privacy": "https://www.aptero.co/legal/privacy.html",
+		"marketing": null
+	},
+	"keyCredentials": [],
+	"knownClientApplications": [],
+	"logoUrl": "https://aadcdn.msftauthimages.net/c1c6b6c8-azvea9nbqr35hosmimtkstezwrcbkzmu-g-eqgzts2q/appbranding/v8l3yi74ubu04viukdyvxwpurgthiq6qo65q-uhqhra/1033/bannerlogo?ts=637829581038841475",
+	"logoutUrl": null,
+	"name": "Aptero 3D Spaces",
+	"notes": "This is the main App store public App. DO NOT REMOVE. https://appsource.microsoft.com/en-us/product/office/WA200004108?tab=Overview",
+	"oauth2AllowIdTokenImplicitFlow": true,
+	"oauth2AllowImplicitFlow": true,
+	"oauth2Permissions": [
+		{
+			"adminConsentDescription": "Allows Teams to call the app’s web APIs as the current user.",
+			"adminConsentDisplayName": "Teams can access app’s web APIs",
+			"id": "6872fde7-3826-4bfb-b8de-598a294aa0a9",
+			"isEnabled": true,
+			"lang": null,
+			"origin": "Application",
+			"type": "User",
+			"userConsentDescription": "Enable Teams to call this app’s web APIs with the same rights that you have",
+			"userConsentDisplayName": "Teams can access app’s web APIs and make requests on your behalf",
+			"value": "access_as_user"
+		}
+	],
+	"oauth2RequirePostResponse": false,
+	"optionalClaims": {
+		"idToken": [],
+		"accessToken": [
+			{
+				"name": "idtyp",
+				"source": null,
+				"essential": false,
+				"additionalProperties": []
+			}
+		],
+		"saml2Token": []
+	},
+	"orgRestrictions": [],
+	"parentalControlSettings": {
+		"countriesBlockedForMinors": [],
+		"legalAgeGroupRule": "Allow"
+	},
+	"passwordCredentials": [
+		{
+			"customKeyIdentifier": null,
+			"endDate": "2024-03-23T09:48:15.0727908Z",
+			"keyId": "0ee03e65-4c3f-410d-9ed2-f866adf55e68",
+			"startDate": "2022-03-23T09:48:15.0727908Z",
+			"value": null,
+			"createdOn": "2022-03-23T09:48:15.1509355Z",
+			"hint": "LQd",
+			"displayName": "default"
+		},
+		{
+			"customKeyIdentifier": null,
+			"endDate": "2024-03-08T09:04:45.8194467Z",
+			"keyId": "11354e59-721b-42f3-88e4-ef8dd5ba86f3",
+			"startDate": "2022-03-08T09:04:45.8194467Z",
+			"value": null,
+			"createdOn": "2022-03-08T09:04:45.9132605Z",
+			"hint": "8LD",
+			"displayName": "default"
+		},
+		{
+			"customKeyIdentifier": null,
+			"endDate": "2024-03-04T14:37:53.8978724Z",
+			"keyId": "5109b666-694d-43d2-b552-a9448d6d0399",
+			"startDate": "2022-03-04T14:37:53.8978724Z",
+			"value": null,
+			"createdOn": "2022-03-04T14:37:53.9291232Z",
+			"hint": "oxH",
+			"displayName": "default"
+		}
+	],
+	"preAuthorizedApplications": [
+		{
+			"appId": "bc59ab01-8403-45c6-8796-ac3ef710b3e3",
+			"permissionIds": [
+				"6872fde7-3826-4bfb-b8de-598a294aa0a9"
+			]
+		},
+		{
+			"appId": "00000002-0000-0ff1-ce00-000000000000",
+			"permissionIds": [
+				"6872fde7-3826-4bfb-b8de-598a294aa0a9"
+			]
+		},
+		{
+			"appId": "d3590ed6-52b3-4102-aeff-aad2292ab01c",
+			"permissionIds": [
+				"6872fde7-3826-4bfb-b8de-598a294aa0a9"
+			]
+		},
+		{
+			"appId": "4765445b-32c6-49b0-83e6-1d93765276ca",
+			"permissionIds": [
+				"6872fde7-3826-4bfb-b8de-598a294aa0a9"
+			]
+		},
+		{
+			"appId": "4345a7b9-9a63-4910-a426-35363201d503",
+			"permissionIds": [
+				"6872fde7-3826-4bfb-b8de-598a294aa0a9"
+			]
+		},
+		{
+			"appId": "0ec893e0-5785-4de6-99da-4ed124e5296c",
+			"permissionIds": [
+				"6872fde7-3826-4bfb-b8de-598a294aa0a9"
+			]
+		},
+		{
+			"appId": "5e3ce6c0-2b1f-4285-8d4b-75ee78787346",
+			"permissionIds": [
+				"6872fde7-3826-4bfb-b8de-598a294aa0a9"
+			]
+		},
+		{
+			"appId": "1fec8e78-bce4-4aaf-ab1b-5451cc387264",
+			"permissionIds": [
+				"6872fde7-3826-4bfb-b8de-598a294aa0a9"
+			]
+		}
+	],
+	"publisherDomain": "aptero.co",
+	"replyUrlsWithType": [
+		{
+			"url": "https://meet.aptero.co/blank-auth-end.html",
+			"type": "Spa"
+		},
+		{
+			"url": "https://meet.aptero.co/auth-end.html",
+			"type": "Web"
+		},
+		{
+			"url": "https://meet.aptero.co/auth-end.html?clientId=8cb358b6-25aa-4afc-b403-3362db42ea49",
+			"type": "Spa"
+		},
+		{
+			"url": "https://meet.aptero.co/signin",
+			"type": "Spa"
+		}
+	],
+	"requiredResourceAccess": [
+		{
+			"resourceAppId": "00000003-0000-0000-c000-000000000000",
+			"resourceAccess": [
+				{
+					"id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+					"type": "Scope"
+				}
+			]
+		}
+	],
+	"samlMetadataUrl": null,
+	"signInUrl": "http://aptero.co/",
+	"signInAudience": "AzureADMultipleOrgs",
+	"tags": [],
+	"tokenEncryptionKeyId": null
+}

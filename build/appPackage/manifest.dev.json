@@ -1,0 +1,94 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.16",
+    "version": "2.0.23",
+    "id": "5bec9eb7-d2e0-475b-a871-0e54786efc4e",
+    "packageName": "com.microsoft.teams.extension",
+    "localizationInfo": {
+        "defaultLanguageTag": "en"
+    },
+    "developer": {
+        "name": "Aptero",
+        "websiteUrl": "https://www.aptero.co",
+        "privacyUrl": "https://www.aptero.co/legal/privacy.html",
+        "termsOfUseUrl": "https://www.aptero.co/legal/termsofuse.html"
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "name": {
+        "short": "Aptero (local)",
+        "full": "Aptero (local)"
+    },
+    "description": {
+        "short": "Micro metaverse for business",
+        "full": "**Customized metaverse inside workplace platforms like Microsoft Teams that can be used as a collaborative tool/virtual campus for company teams.\n\n\n\n🚀 Your metaverse is now accessible within Microsoft Teams! 🚀**\n\nIt is now possible to have 3D worlds and virtual campus directly within your teams channel and meeting !\n\nWe provide a 3D immersive space designed by you to organize your events, trainings and meetings. Create your digital twin and discuss naturally with your colleagues mixing video conferencing and metaverses.\n\nHow does it work ?\n\n-   Contact us to create your first 3D space together\n-   Add it within your teams\n-   Join immersive highly realistic digital twins, trainings or showrooms inside Teams.\n\nYou can also try some 3D spaces available by default inside our app.\n\n**Contact us at contact@aptero.co or on our website !**"
+    },
+    "accentColor": "#FFFFFF",
+    "bots": [],
+    "composeExtensions": [],
+    "meetingExtensionDefinition": {
+        "supportsAnonymousGuestUsers": true
+    },
+    "showLoadingIndicator": true,
+    "subscriptionOffer": {
+        "offerId": "aptero1644253171882.offer-saas-aptero"
+    },
+    "configurableTabs": [
+        {
+            "configurationUrl": "https://localhost:53000/microsoft-settings.html?msteams=true",
+            "canUpdateConfiguration": true,
+            "scopes": [
+                "team",
+                "groupchat"
+            ],
+            "context": [
+                "channelTab",
+                "privateChatTab",
+                "meetingChatTab",
+                "meetingDetailsTab",
+                "meetingSidePanel",
+                "meetingStage"
+            ]
+        }
+    ],
+    "staticTabs": [
+        {
+            "entityId": "index",
+            "name": "Admin Tab",
+            "contentUrl": "https://localhost:53000/microsoft-settings.html?msteams=true",
+            "websiteUrl": "https://localhost:53000/microsoft-settings.html?msteams=true",
+            "scopes": [
+                "personal"
+            ]
+        }
+    ],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "authorization": {
+        "permissions": {
+            "resourceSpecific": [
+                {
+                    "name": "MeetingStage.Write.Chat",
+                    "type": "Delegated"
+                },
+                {
+                    "name": "ChannelMeetingStage.Write.Group",
+                    "type": "Delegated"
+                }
+            ]
+        }
+    },
+    "validDomains": [
+        "*.aptero.co",
+        "*.axolotis.com",
+        "localhost:53000"
+    ],
+    "webApplicationInfo": {
+        "id": "7bef6237-092e-4b4a-81c8-14cadd907a78",
+        "resource": "api://localhost:53000/7bef6237-092e-4b4a-81c8-14cadd907a78"
+    }
+}

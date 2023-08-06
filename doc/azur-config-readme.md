@@ -1,0 +1,2 @@
+Go to manifest in azur and check the configuration against the json file prensen here.
+https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/Manifest/appId/8cb358b6-25aa-4afc-b403-3362db42ea49/isMSAApp~/false
