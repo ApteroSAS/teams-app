@@ -32,9 +32,6 @@
         "supportsAnonymousGuestUsers": true
     },
     "showLoadingIndicator": true,
-    "subscriptionOffer": {
-        "offerId": "aptero1644253171882.offer-saas-aptero"
-    },
     "configurableTabs": [
         {
             "configurationUrl": "${{PROVISIONOUTPUT__FRONTENDHOSTINGOUTPUT__ENDPOINT}}/microsoft-settings.html?msteams=true",
