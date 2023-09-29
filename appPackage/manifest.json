@@ -11,7 +11,8 @@
         "name": "Aptero",
         "websiteUrl": "https://www.aptero.co",
         "privacyUrl": "https://www.aptero.co/legal/privacy.html",
-        "termsOfUseUrl": "https://www.aptero.co/legal/termsofuse.html"
+        "termsOfUseUrl": "https://www.aptero.co/legal/termsofuse.html",
+        "mpnId": "6090692"
     },
     "icons": {
         "color": "color.png",
